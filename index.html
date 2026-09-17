@@ -1,221 +1,520 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Mochi Study Pet</title>
+<title>Mochi Study Pet ♡</title>
 
 <style>
-* {
-  box-sizing: border-box;
+*{box-sizing:border-box}
+
+body{
+  margin:0;
+  font-family:"Trebuchet MS",Arial,sans-serif;
+  background:#f7f1ed;
+  color:#514a47;
 }
 
-body {
-  margin: 0;
-  font-family: "Trebuchet MS", Arial, sans-serif;
-  background: #f7f1ed;
-  color: #514a47;
+.app{
+  max-width:760px;
+  margin:auto;
+  padding:18px;
 }
 
-.pet {
-  max-width: 620px;
-  margin: auto;
-  padding: 18px;
+.header{
+  text-align:center;
+  margin-bottom:15px;
 }
 
-.header {
-  text-align: center;
-  margin-bottom: 14px;
+.header h1{
+  margin:0;
+  font-size:29px;
+  letter-spacing:.2px;
 }
 
-.header h1 {
-  margin: 0;
-  font-size: 27px;
+.header p{
+  margin:5px 0 0;
+  color:#978a84;
+  font-size:14px;
 }
 
-.header p {
-  margin: 5px 0 0;
-  color: #8c817c;
-  font-size: 14px;
+/* MAIN CARD */
+
+.card{
+  background:rgba(255,255,255,.82);
+  border:1px solid #eaded8;
+  border-radius:25px;
+  padding:18px;
+  margin-bottom:15px;
+  box-shadow:0 7px 25px rgba(100,80,70,.07);
 }
 
-.card {
-  background: rgba(255,255,255,.78);
-  border: 1px solid #eaded8;
-  border-radius: 24px;
-  padding: 18px;
-  margin-bottom: 14px;
-  box-shadow: 0 5px 20px rgba(100,80,70,.06);
+/* ROOM */
+
+.room{
+  position:relative;
+  height:310px;
+  overflow:hidden;
+  border-radius:22px;
+  background:#eee4de;
+  border:1px solid #e5d7d0;
 }
 
-.bunny-area {
-  text-align: center;
-  background: #f3e9e4;
-  border-radius: 24px;
-  padding: 18px 10px 20px;
+/* window */
+
+.window{
+  position:absolute;
+  top:22px;
+  left:50%;
+  transform:translateX(-50%);
+  width:145px;
+  height:100px;
+  border:8px solid #ded0c9;
+  border-radius:18px;
+  background:#dce8e7;
+  overflow:hidden;
 }
 
-.bunny {
-  font-size: 105px;
-  line-height: 1;
-  display: inline-block;
-  transition: .25s;
-  cursor: pointer;
-  user-select: none;
+.window:before{
+  content:"";
+  position:absolute;
+  width:100%;
+  height:100%;
+  background:
+    radial-gradient(circle at 25% 35%,#fff 0 9px,transparent 10px),
+    radial-gradient(circle at 65% 25%,#fff 0 11px,transparent 12px),
+    linear-gradient(#dce9ea,#f8e7df);
+  opacity:.8;
 }
 
-.bunny:hover {
-  transform: scale(1.06);
+.window:after{
+  content:"";
+  position:absolute;
+  left:50%;
+  top:0;
+  width:5px;
+  height:100%;
+  background:#ded0c9;
+  transform:translateX(-50%);
 }
 
-.bunny.happy {
-  animation: bounce .55s;
+/* shelf */
+
+.shelf{
+  position:absolute;
+  right:24px;
+  top:52px;
+  width:115px;
+  height:8px;
+  background:#cdbcb3;
+  border-radius:5px;
 }
 
-@keyframes bounce {
-  0% {transform: translateY(0);}
-  35% {transform: translateY(-14px) rotate(-3deg);}
-  70% {transform: translateY(0) rotate(3deg);}
-  100% {transform: translateY(0);}
+.plant{
+  position:absolute;
+  right:55px;
+  top:18px;
+  font-size:32px;
 }
 
-.message {
-  margin-top: 8px;
-  font-size: 15px;
-  font-weight: bold;
+/* floor */
+
+.floor{
+  position:absolute;
+  bottom:0;
+  width:100%;
+  height:70px;
+  background:#e3d2c9;
+  border-top:2px solid #d4c1b8;
 }
 
-.level {
-  display: inline-block;
-  margin-top: 8px;
-  background: #fff;
-  border-radius: 20px;
-  padding: 6px 13px;
-  font-size: 13px;
+/* bunny */
+
+.bunny{
+  position:absolute;
+  left:50%;
+  bottom:42px;
+  transform:translateX(-50%);
+  width:145px;
+  height:165px;
+  cursor:pointer;
+  transition:.25s;
+  z-index:5;
 }
 
-.stats {
-  display: grid;
-  grid-template-columns: repeat(3,1fr);
-  gap: 10px;
-  margin-top: 14px;
+.bunny:hover{
+  transform:translateX(-50%) scale(1.04);
 }
 
-.stat {
-  background: #faf6f3;
-  padding: 11px 7px;
-  border-radius: 15px;
-  text-align: center;
-  font-size: 12px;
+.ear{
+  position:absolute;
+  width:47px;
+  height:105px;
+  top:0;
+  background:#c7c7c9;
+  border-radius:50% 50% 45% 45%;
 }
 
-.stat strong {
-  display: block;
-  margin-top: 4px;
-  font-size: 14px;
+.ear.left{
+  left:16px;
+  transform:rotate(-8deg);
 }
 
-.bar {
-  height: 7px;
-  background: #e9e1dd;
-  border-radius: 10px;
-  overflow: hidden;
-  margin-top: 7px;
+.ear.right{
+  right:16px;
+  transform:rotate(8deg);
 }
 
-.fill {
-  height: 100%;
-  border-radius: 10px;
-  background: #d7b6b1;
+.ear:after{
+  content:"";
+  position:absolute;
+  width:20px;
+  height:73px;
+  top:15px;
+  left:50%;
+  transform:translateX(-50%);
+  background:#e7b9bd;
+  border-radius:50%;
 }
 
-.actions {
-  display: grid;
-  grid-template-columns: repeat(4,1fr);
-  gap: 8px;
-  margin-top: 15px;
+.head{
+  position:absolute;
+  left:8px;
+  top:48px;
+  width:129px;
+  height:104px;
+  background:#cfcfd1;
+  border-radius:50% 50% 46% 46%;
+  box-shadow:inset 0 -6px 0 rgba(0,0,0,.03);
 }
 
-button {
-  border: 0;
-  border-radius: 15px;
-  padding: 12px 5px;
-  background: #f1e4df;
-  color: #514a47;
-  font-weight: bold;
-  cursor: pointer;
-  font-family: inherit;
-  transition: .18s;
+.eye{
+  position:absolute;
+  top:38px;
+  width:9px;
+  height:13px;
+  background:#403b3a;
+  border-radius:50%;
 }
 
-button:hover {
-  transform: translateY(-2px);
-  background: #ead6d1;
+.eye.left{left:39px}
+.eye.right{right:39px}
+
+.nose{
+  position:absolute;
+  left:50%;
+  top:54px;
+  transform:translateX(-50%);
+  width:11px;
+  height:8px;
+  background:#d98992;
+  border-radius:50%;
 }
 
-button span {
-  display: block;
-  font-size: 20px;
-  margin-bottom: 4px;
+.mouth{
+  position:absolute;
+  left:50%;
+  top:61px;
+  transform:translateX(-50%);
+  font-size:18px;
+  color:#514a47;
 }
 
-.reward {
-  background: #fff4e6;
-  border: 1px solid #ead7bd;
+.cheek{
+  position:absolute;
+  top:57px;
+  width:22px;
+  height:10px;
+  background:#e8bfc1;
+  border-radius:50%;
+  opacity:.65;
 }
 
-.reward button {
-  width: 100%;
-  background: #ead8b8;
-  margin-top: 8px;
+.cheek.left{left:17px}
+.cheek.right{right:17px}
+
+.body{
+  position:absolute;
+  bottom:0;
+  left:35px;
+  width:75px;
+  height:50px;
+  background:#c7c7c9;
+  border-radius:50% 50% 40% 40%;
 }
 
-.reward button:disabled {
-  opacity: .45;
-  cursor: not-allowed;
-  transform: none;
+/* animations */
+
+.bunny.happy{
+  animation:bounce .65s ease;
 }
 
-.shop {
-  display: grid;
-  grid-template-columns: repeat(3,1fr);
-  gap: 8px;
+.bunny.eating{
+  animation:eat .7s ease;
 }
 
-.item {
-  text-align: center;
-  background: #faf6f3;
-  border-radius: 15px;
-  padding: 10px 5px;
-  font-size: 12px;
+.bunny.sleeping{
+  animation:sleep .9s ease-in-out infinite alternate;
 }
 
-.item .emoji {
-  font-size: 27px;
+@keyframes bounce{
+  0%,100%{bottom:42px}
+  45%{bottom:65px}
 }
 
-.item button {
-  margin-top: 7px;
-  width: 100%;
-  padding: 7px 3px;
-  font-size: 11px;
+@keyframes eat{
+  0%,100%{transform:translateX(-50%)}
+  50%{transform:translateX(-50%) scale(.94)}
 }
 
-.footer {
-  text-align: center;
-  color: #a0948f;
-  font-size: 11px;
-  padding: 5px;
+@keyframes sleep{
+  from{transform:translateX(-50%) translateY(2px)}
+  to{transform:translateX(-50%) translateY(8px)}
 }
 
-@media(max-width:450px) {
-  .actions {
-    grid-template-columns: repeat(2,1fr);
+/* speech */
+
+.speech{
+  position:absolute;
+  left:18px;
+  top:20px;
+  background:white;
+  padding:10px 13px;
+  border-radius:15px;
+  font-size:12px;
+  max-width:180px;
+  box-shadow:0 4px 15px rgba(80,60,50,.08);
+  z-index:10;
+}
+
+.speech:after{
+  content:"";
+  position:absolute;
+  bottom:-7px;
+  left:25px;
+  border-width:7px 7px 0 0;
+  border-style:solid;
+  border-color:white transparent transparent transparent;
+}
+
+/* stats */
+
+.level{
+  text-align:center;
+  margin-top:15px;
+  font-size:14px;
+}
+
+.xpbar{
+  height:9px;
+  margin:7px auto 0;
+  max-width:420px;
+  background:#e8dfda;
+  border-radius:20px;
+  overflow:hidden;
+}
+
+.xpfill{
+  height:100%;
+  width:0;
+  background:#d7b6b1;
+  border-radius:20px;
+  transition:.4s;
+}
+
+.stats{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:9px;
+  margin-top:15px;
+}
+
+.stat{
+  background:#faf6f3;
+  padding:11px 7px;
+  border-radius:15px;
+  text-align:center;
+  font-size:12px;
+}
+
+.stat strong{
+  display:block;
+  font-size:14px;
+  margin-top:3px;
+}
+
+.mini{
+  height:6px;
+  background:#e9e1dd;
+  border-radius:20px;
+  overflow:hidden;
+  margin-top:6px;
+}
+
+.mini div{
+  height:100%;
+  width:50%;
+  background:#cdb9b2;
+  border-radius:20px;
+}
+
+/* actions */
+
+.actions{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:8px;
+  margin-top:14px;
+}
+
+button{
+  border:0;
+  border-radius:15px;
+  padding:11px 5px;
+  background:#f1e4df;
+  color:#514a47;
+  font-weight:bold;
+  cursor:pointer;
+  font-family:inherit;
+  transition:.18s;
+}
+
+button:hover{
+  transform:translateY(-2px);
+  background:#ead6d1;
+}
+
+button:active{
+  transform:scale(.96);
+}
+
+button .icon{
+  display:block;
+  font-size:21px;
+  margin-bottom:4px;
+}
+
+/* reward */
+
+.reward{
+  background:#fff5e7;
+  border-color:#ead8bd;
+}
+
+.reward-title{
+  font-size:17px;
+  font-weight:bold;
+}
+
+.reward p{
+  font-size:13px;
+  color:#81756f;
+}
+
+.reward-buttons{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:8px;
+}
+
+.reward-buttons button{
+  background:#ead8b8;
+}
+
+.reward-buttons button:disabled{
+  opacity:.4;
+  cursor:not-allowed;
+}
+
+/* shop */
+
+.shop{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:9px;
+}
+
+.item{
+  background:#faf6f3;
+  border-radius:16px;
+  padding:11px 5px;
+  text-align:center;
+  font-size:12px;
+}
+
+.item-icon{
+  font-size:29px;
+  margin-bottom:3px;
+}
+
+.item button{
+  margin-top:7px;
+  width:100%;
+  padding:7px 3px;
+  font-size:11px;
+}
+
+/* inventory */
+
+.inventory{
+  display:flex;
+  flex-wrap:wrap;
+  gap:7px;
+  margin-top:10px;
+}
+
+.badge{
+  background:#f2e5df;
+  border-radius:20px;
+  padding:6px 10px;
+  font-size:12px;
+}
+
+/* toast */
+
+.toast{
+  position:fixed;
+  left:50%;
+  bottom:22px;
+  transform:translateX(-50%) translateY(20px);
+  background:#514a47;
+  color:white;
+  padding:10px 16px;
+  border-radius:20px;
+  opacity:0;
+  pointer-events:none;
+  transition:.3s;
+  font-size:13px;
+  z-index:99;
+}
+
+.toast.show{
+  opacity:1;
+  transform:translateX(-50%) translateY(0);
+}
+
+.footer{
+  text-align:center;
+  color:#a0948f;
+  font-size:11px;
+  padding:5px;
+}
+
+@media(max-width:520px){
+  .actions{
+    grid-template-columns:repeat(2,1fr);
   }
 
-  .stats {
-    grid-template-columns: repeat(2,1fr);
+  .stats{
+    grid-template-columns:1fr;
+  }
+
+  .shop{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .reward-buttons{
+    grid-template-columns:1fr;
   }
 }
 </style>
@@ -223,74 +522,114 @@ button span {
 
 <body>
 
-<div class="pet">
+<div class="app">
 
   <div class="header">
     <h1>Meet Mochi ♡</h1>
     <p>Your little study buddy 🐰</p>
   </div>
 
-  <div class="card bunny-area">
+  <div class="card">
 
-    <div id="bunny" class="bunny" onclick="petMochi()">🐰</div>
+    <div class="room">
 
-    <div id="message" class="message">
-      Let's have a productive day! ♡
+      <div class="window"></div>
+
+      <div class="shelf"></div>
+
+      <div class="plant">🌿</div>
+
+      <div class="speech" id="speech">
+        Let's have a productive day! ♡
+      </div>
+
+      <div class="bunny" id="bunny" onclick="petMochi()">
+
+        <div class="ear left"></div>
+        <div class="ear right"></div>
+
+        <div class="head">
+
+          <div class="eye left"></div>
+          <div class="eye right"></div>
+
+          <div class="cheek left"></div>
+          <div class="cheek right"></div>
+
+          <div class="nose"></div>
+
+          <div class="mouth">⌣</div>
+
+        </div>
+
+        <div class="body"></div>
+
+      </div>
+
+      <div class="floor"></div>
+
     </div>
+
 
     <div class="level">
-      ⭐ Level <span id="level">1</span>
-      · <span id="xp">0</span> / 100 XP
-      · 🪙 <span id="coins">0</span>
+      ⭐ Level <strong id="level">1</strong>
+      · <span id="xp">0</span> / <span id="xpNeeded">100</span> XP
+      · 🪙 <strong id="coins">0</strong>
+
+      <div class="xpbar">
+        <div class="xpfill" id="xpfill"></div>
+      </div>
     </div>
+
 
     <div class="stats">
 
       <div class="stat">
         ❤️ Happiness
-        <strong id="happyText">80</strong>
-        <div class="bar">
-          <div id="happyBar" class="fill"></div>
+        <strong id="happy">80</strong>
+        <div class="mini">
+          <div id="happyBar"></div>
         </div>
       </div>
 
       <div class="stat">
         🍓 Hunger
-        <strong id="hungerText">60</strong>
-        <div class="bar">
-          <div id="hungerBar" class="fill"></div>
+        <strong id="hunger">60</strong>
+        <div class="mini">
+          <div id="hungerBar"></div>
         </div>
       </div>
 
       <div class="stat">
         ⚡ Energy
-        <strong id="energyText">70</strong>
-        <div class="bar">
-          <div id="energyBar" class="fill"></div>
+        <strong id="energy">70</strong>
+        <div class="mini">
+          <div id="energyBar"></div>
         </div>
       </div>
 
     </div>
 
+
     <div class="actions">
 
       <button onclick="feed()">
-        <span>🍎</span>
+        <span class="icon">🍎</span>
         Füttern
       </button>
 
       <button onclick="petMochi()">
-        <span>💕</span>
+        <span class="icon">💕</span>
         Streicheln
       </button>
 
       <button onclick="play()">
-        <span>🎾</span>
+        <span class="icon">🎾</span>
         Spielen
       </button>
 
       <button onclick="sleep()">
-        <span>🌙</span>
+        <span class="icon">🌙</span>
         Schlafen
       </button>
 
@@ -298,63 +637,99 @@ button span {
 
   </div>
 
+
+  <!-- STUDY REWARDS -->
+
   <div class="card reward">
 
-    <strong>🎁 Study Reward</strong>
+    <div class="reward-title">
+      🎁 Study Rewards
+    </div>
 
-    <p style="font-size:13px;">
-      Aufgabe in Notion erledigt?
-      Dann kannst du hier deine Belohnung abholen!
+    <p>
+      Aufgabe in Notion erledigt? Hol dir deine XP! ♡
     </p>
 
-    <button id="rewardButton" onclick="claimReward()">
-      ✨ +10 XP &nbsp; +5 🪙
-    </button>
+    <div class="reward-buttons">
 
-    <div id="rewardText"
-         style="text-align:center;font-size:12px;margin-top:7px;">
+      <button id="reward10" onclick="claimReward(10,5)">
+        ✨ +10 XP<br>+5 🪙
+      </button>
+
+      <button id="reward20" onclick="claimReward(20,10)">
+        📚 +20 XP<br>+10 🪙
+      </button>
+
+      <button id="reward50" onclick="claimReward(50,25)">
+        🏆 +50 XP<br>+25 🪙
+      </button>
+
     </div>
+
+    <p id="rewardMessage" style="text-align:center;margin-bottom:0;"></p>
 
   </div>
 
 
+  <!-- SHOP -->
+
   <div class="card">
 
-    <strong>🛍️ Mochi's little shop</strong>
+    <div class="reward-title">
+      🛍️ Mochi's little shop
+    </div>
 
     <p style="font-size:12px;color:#8c817c;">
-      Spend your coins on cute things ♡
+      Buy cute things with your study coins ♡
     </p>
 
     <div class="shop">
 
       <div class="item">
-        <div class="emoji">🎀</div>
+        <div class="item-icon">🎀</div>
         Bow
-        <button onclick="buy(20,'🎀')">
+        <button onclick="buyItem('bow',20,'🎀')">
           20 🪙
         </button>
       </div>
 
       <div class="item">
-        <div class="emoji">🥕</div>
+        <div class="item-icon">🥕</div>
         Carrot
-        <button onclick="buy(10,'🥕')">
+        <button onclick="buyItem('carrot',10,'🥕')">
           10 🪙
         </button>
       </div>
 
       <div class="item">
-        <div class="emoji">🌸</div>
+        <div class="item-icon">🌸</div>
         Flower
-        <button onclick="buy(30,'🌸')">
+        <button onclick="buyItem('flower',30,'🌸')">
           30 🪙
+        </button>
+      </div>
+
+      <div class="item">
+        <div class="item-icon">🧸</div>
+        Teddy
+        <button onclick="buyItem('teddy',50,'🧸')">
+          50 🪙
         </button>
       </div>
 
     </div>
 
+
+    <div style="margin-top:16px;font-weight:bold;font-size:13px;">
+      🎒 Mochi's Inventory
+    </div>
+
+    <div class="inventory" id="inventory">
+      <span class="badge">Nothing yet ♡</span>
+    </div>
+
   </div>
+
 
   <div class="footer">
     Study ♡ Care ♡ Grow ♡ Together
@@ -362,50 +737,121 @@ button span {
 
 </div>
 
+<div class="toast" id="toast"></div>
+
 
 <script>
 
-let data = JSON.parse(localStorage.getItem("mochiData")) || {
+const defaultData = {
 
-  xp: 0,
-  level: 1,
-  coins: 0,
+  xp:0,
+  level:1,
+  coins:0,
 
-  happiness: 80,
-  hunger: 60,
-  energy: 70,
+  happiness:80,
+  hunger:60,
+  energy:70,
 
-  lastReward: null
+  inventory:[]
 
 };
 
 
-function save() {
+let data =
+  JSON.parse(localStorage.getItem("mochi2")) ||
+  defaultData;
+
+
+function save(){
+
   localStorage.setItem(
-    "mochiData",
+    "mochi2",
     JSON.stringify(data)
   );
+
 }
 
 
-function clamp(value) {
-  return Math.max(0, Math.min(100, value));
+function clamp(number){
+
+  return Math.max(
+    0,
+    Math.min(100,number)
+  );
+
 }
 
 
-function update() {
+function showMessage(text){
 
-  document.getElementById("xp").textContent = data.xp;
-  document.getElementById("level").textContent = data.level;
-  document.getElementById("coins").textContent = data.coins;
+  document.getElementById("speech").textContent =
+    text;
 
-  document.getElementById("happyText").textContent =
+}
+
+
+function toast(text){
+
+  const t =
+    document.getElementById("toast");
+
+  t.textContent = text;
+
+  t.classList.add("show");
+
+  setTimeout(()=>{
+    t.classList.remove("show");
+  },1800);
+
+}
+
+
+function animate(type="happy"){
+
+  const bunny =
+    document.getElementById("bunny");
+
+  bunny.classList.remove(
+    "happy",
+    "eating",
+    "sleeping"
+  );
+
+  void bunny.offsetWidth;
+
+  bunny.classList.add(type);
+
+}
+
+
+function update(){
+
+  document.getElementById("level").textContent =
+    data.level;
+
+  document.getElementById("xp").textContent =
+    data.xp;
+
+  document.getElementById("coins").textContent =
+    data.coins;
+
+
+  const needed = 100;
+
+  document.getElementById("xpNeeded").textContent =
+    needed;
+
+  document.getElementById("xpfill").style.width =
+    (data.xp / needed * 100) + "%";
+
+
+  document.getElementById("happy").textContent =
     data.happiness;
 
-  document.getElementById("hungerText").textContent =
+  document.getElementById("hunger").textContent =
     data.hunger;
 
-  document.getElementById("energyText").textContent =
+  document.getElementById("energy").textContent =
     data.energy;
 
 
@@ -419,108 +865,72 @@ function update() {
     data.energy + "%";
 
 
-  const button =
-    document.getElementById("rewardButton");
-
-  const today =
-    new Date().toISOString().slice(0,10);
-
-  if(data.lastReward === today) {
-
-    button.disabled = true;
-
-    button.textContent =
-      "✅ Belohnung heute schon abgeholt";
-
-  } else {
-
-    button.disabled = false;
-
-    button.textContent =
-      "✨ +10 XP  +5 🪙";
-
-  }
+  updateInventory();
 
   save();
-}
-
-
-function say(text) {
-
-  document.getElementById("message").textContent =
-    text;
 
 }
 
 
-function animate() {
-
-  const bunny =
-    document.getElementById("bunny");
-
-  bunny.classList.remove("happy");
-
-  void bunny.offsetWidth;
-
-  bunny.classList.add("happy");
-
-}
-
-
-function addXP(amount) {
+function addXP(amount){
 
   data.xp += amount;
 
-  while(data.xp >= 100) {
+  let leveledUp = false;
+
+  while(data.xp >= 100){
 
     data.xp -= 100;
+
     data.level++;
+
     data.coins += 20;
 
-    say(
-      "🎉 Mochi ist Level " +
-      data.level +
-      "! +20 🪙"
+    leveledUp = true;
+
+  }
+
+
+  if(leveledUp){
+
+    showMessage(
+      "🎉 LEVEL UP! Mochi ist jetzt Level " +
+      data.level + "! ♡"
+    );
+
+    toast(
+      "🎉 Level " + data.level + "! +20 🪙"
     );
 
   }
 
   update();
 
-  animate();
-
 }
 
 
-function claimReward() {
+function claimReward(xp,coins){
 
-  const today =
-    new Date().toISOString().slice(0,10);
+  addXP(xp);
 
-  if(data.lastReward === today) {
+  data.coins += coins;
 
-    say("Die Belohnung gibt es heute schon ♡");
-    return;
+  showMessage(
+    "Yay! Du hast gelernt! Mochi ist stolz! 🐰💗"
+  );
 
-  }
+  toast(
+    "+" + xp + " XP  +" + coins + " 🪙"
+  );
 
-  addXP(10);
-
-  data.coins += 5;
-
-  data.lastReward = today;
-
-  document.getElementById("rewardText").textContent =
-    "🎉 Good job! Mochi ist stolz auf dich!";
-
-  say("Yay! Eine Aufgabe geschafft! 🐰💗");
+  animate("happy");
 
   update();
 
 }
 
 
-function feed() {
+function feed(){
 
   data.hunger =
     clamp(data.hunger + 20);
@@ -528,34 +938,42 @@ function feed() {
   data.energy =
     clamp(data.energy - 2);
 
-  say("Nom nom nom! 🍎");
+  showMessage(
+    "Nom nom nom! Das war lecker! 🍎"
+  );
 
-  animate();
+  animate("eating");
 
   update();
 
 }
 
 
-function petMochi() {
+function petMochi(){
 
   data.happiness =
     clamp(data.happiness + 10);
 
-  say("Mochi liebt die Kuscheleinheiten! 💕");
+  showMessage(
+    "Mochi liebt die Kuscheleinheiten! 💕"
+  );
 
-  animate();
+  animate("happy");
 
   update();
 
 }
 
 
-function play() {
+function play(){
 
-  if(data.energy < 15) {
+  if(data.energy < 15){
 
-    say("Mochi ist müde... 😴");
+    showMessage(
+      "Mochi ist zu müde zum Spielen... 😴"
+    );
+
+    animate("sleeping");
 
     return;
 
@@ -567,16 +985,18 @@ function play() {
   data.energy =
     clamp(data.energy - 15);
 
-  say("Yaaay! Spielen! 🎾");
+  showMessage(
+    "YAAAY! Spielen wir! 🎾"
+  );
 
-  animate();
+  animate("happy");
 
   update();
 
 }
 
 
-function sleep() {
+function sleep(){
 
   data.energy =
     clamp(data.energy + 30);
@@ -584,36 +1004,99 @@ function sleep() {
   data.happiness =
     clamp(data.happiness + 3);
 
-  say("Zzz... gute Nacht, Mochi 🌙");
+  showMessage(
+    "Zzz... Mochi macht ein Nickerchen 🌙"
+  );
 
-  animate();
+  animate("sleeping");
 
   update();
 
 }
 
 
-function buy(price, item) {
+function buyItem(id,price,emoji){
 
-  if(data.coins < price) {
+  if(data.inventory.includes(id)){
 
-    say("Mochi braucht noch mehr 🪙!");
+    showMessage(
+      "Das hast du schon! ♡"
+    );
 
     return;
 
   }
 
+
+  if(data.coins < price){
+
+    showMessage(
+      "Mochi braucht noch mehr 🪙!"
+    );
+
+    toast("Noch nicht genug Coins!");
+
+    return;
+
+  }
+
+
   data.coins -= price;
+
+  data.inventory.push(id);
 
   data.happiness =
     clamp(data.happiness + 5);
 
-  say(
-    item +
+
+  showMessage(
+    emoji +
     " gekauft! Mochi liebt es! ♡"
   );
 
+  toast(
+    emoji + " gekauft!"
+  );
+
   update();
+
+}
+
+
+function updateInventory(){
+
+  const container =
+    document.getElementById("inventory");
+
+
+  if(data.inventory.length === 0){
+
+    container.innerHTML =
+      '<span class="badge">Nothing yet ♡</span>';
+
+    return;
+
+  }
+
+
+  const names = {
+
+    bow:"🎀 Bow",
+    carrot:"🥕 Carrot",
+    flower:"🌸 Flower",
+    teddy:"🧸 Teddy"
+
+  };
+
+
+  container.innerHTML =
+    data.inventory
+      .map(item =>
+        '<span class="badge">' +
+        names[item] +
+        '</span>'
+      )
+      .join("");
 
 }
 
