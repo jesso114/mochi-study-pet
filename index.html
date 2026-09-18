@@ -6,6 +6,7 @@
 <title>Mochi Study Pet ♡</title>
 
 <style>
+
 * {
   box-sizing: border-box;
 }
@@ -48,9 +49,10 @@ body {
   box-shadow: 0 8px 25px rgba(80,70,65,.05);
 }
 
-/* =========================
+
+/* =========================================================
    MOCHI ROOM
-========================= */
+========================================================= */
 
 .mochi-room {
   height: 330px;
@@ -70,54 +72,49 @@ body {
   border: 1px solid #ded6d2;
 }
 
-/* little shelf */
-.mochi-room::after {
-  content: "🌱";
-  position: absolute;
-  right: 55px;
-  top: 48px;
-  font-size: 30px;
-}
 
-/* =========================
+/* =========================================================
    MOCHI
-========================= */
+========================================================= */
+
+/*
+   Mochi ist jetzt nur noch ein unsichtbarer
+   Positions-Container für seinen Kopf.
+*/
 
 .mochi {
   position: absolute;
 
   left: 50%;
-  bottom: 28px;
+  bottom: 72px;
 
-  width: 120px;
-  height: 145px;
+  width: 155px;
+  height: 1px;
 
   transform: translateX(-50%);
 
-  background: #d6d6d4;
+  background: transparent;
 
-  border: 2px solid #c3c3c1;
+  border: none;
 
-  border-radius: 50% 50% 42% 42%;
+  box-shadow: none;
 
   z-index: 5;
 }
 
 
-/* =========================
+/* =========================================================
    HEAD
-   WICHTIG:
-   Kopf liegt VOR dem Körper
-========================= */
+========================================================= */
 
 .mochi-head {
   position: absolute;
 
   left: 50%;
-  top: -45px;
+  top: 0;
 
-  width: 145px;
-  height: 125px;
+  width: 155px;
+  height: 135px;
 
   transform: translateX(-50%);
 
@@ -125,16 +122,20 @@ body {
 
   border: 2px solid #c3c3c1;
 
-  border-radius: 52% 52% 47% 47%;
+  border-radius:
+    52% 52%
+    48% 48%;
 
   z-index: 20;
+
+  box-shadow:
+    0 6px 0 rgba(100,90,85,.06);
 }
 
 
-/* =========================
+/* =========================================================
    EARS
-   Hinter dem Kopf
-========================= */
+========================================================= */
 
 .ear {
   position: absolute;
@@ -146,7 +147,9 @@ body {
 
   border: 2px solid #c3c3c1;
 
-  border-radius: 55% 55% 45% 45%;
+  border-radius:
+    55% 55%
+    45% 45%;
 
   top: -76px;
 
@@ -180,14 +183,14 @@ body {
 }
 
 
-/* =========================
+/* =========================================================
    FACE
-========================= */
+========================================================= */
 
 .eye {
   position: absolute;
 
-  top: 48px;
+  top: 51px;
 
   width: 8px;
   height: 12px;
@@ -200,17 +203,17 @@ body {
 }
 
 .eye.left {
-  left: 43px;
+  left: 46px;
 }
 
 .eye.right {
-  right: 43px;
+  right: 46px;
 }
 
 .nose {
   position: absolute;
 
-  top: 69px;
+  top: 72px;
   left: 50%;
 
   transform: translateX(-50%);
@@ -228,7 +231,7 @@ body {
 .mouth {
   position: absolute;
 
-  top: 77px;
+  top: 80px;
   left: 50%;
 
   transform: translateX(-50%);
@@ -241,9 +244,9 @@ body {
 }
 
 
-/* =========================
+/* =========================================================
    WHISKERS
-========================= */
+========================================================= */
 
 .whisker {
   position: absolute;
@@ -257,95 +260,33 @@ body {
 }
 
 .whisker.left.one {
-  left: -28px;
-  top: 77px;
+  left: -29px;
+  top: 79px;
   transform: rotate(-10deg);
 }
 
 .whisker.left.two {
-  left: -30px;
-  top: 87px;
+  left: -31px;
+  top: 89px;
   transform: rotate(5deg);
 }
 
 .whisker.right.one {
-  right: -28px;
-  top: 77px;
+  right: -29px;
+  top: 79px;
   transform: rotate(10deg);
 }
 
 .whisker.right.two {
-  right: -30px;
-  top: 87px;
+  right: -31px;
+  top: 89px;
   transform: rotate(-5deg);
 }
 
 
-/* =========================
-   PAWS
-========================= */
-
-.paw {
-  position: absolute;
-
-  width: 42px;
-  height: 28px;
-
-  background: #d6d6d4;
-
-  border: 2px solid #c3c3c1;
-
-  border-radius: 50%;
-
-  bottom: 20px;
-
-  z-index: 15;
-}
-
-.paw.left {
-  left: -8px;
-  transform: rotate(15deg);
-}
-
-.paw.right {
-  right: -8px;
-  transform: rotate(-15deg);
-}
-
-
-/* =========================
-   FEET
-========================= */
-
-.foot {
-  position: absolute;
-
-  width: 44px;
-  height: 25px;
-
-  background: #d6d6d4;
-
-  border: 2px solid #c3c3c1;
-
-  border-radius: 50%;
-
-  bottom: -7px;
-
-  z-index: 10;
-}
-
-.foot.left {
-  left: 12px;
-}
-
-.foot.right {
-  right: 12px;
-}
-
-
-/* =========================
+/* =========================================================
    ACCESSORIES
-========================= */
+========================================================= */
 
 #equippedItems {
   position: absolute;
@@ -369,14 +310,20 @@ body {
   pointer-events: none;
 
   line-height: 1;
+
+  filter:
+    drop-shadow(
+      0 2px 1px rgba(0,0,0,.10)
+    );
 }
 
 
-/* Bow */
+/* 🎀 Bow */
+
 .equipped.schleife,
 .equipped.bow {
   left: 50%;
-  top: -25px;
+  top: -28px;
 
   transform: translateX(-50%);
 
@@ -384,11 +331,12 @@ body {
 }
 
 
-/* Flower */
+/* 🌷 Flower */
+
 .equipped.blume,
 .equipped.flower {
   left: 12px;
-  top: -15px;
+  top: -16px;
 
   font-size: 27px;
 
@@ -396,11 +344,12 @@ body {
 }
 
 
-/* Carrot */
+/* 🥕 Carrot */
+
 .equipped.karotte,
 .equipped.carrot {
-  right: 0;
-  top: 70px;
+  right: 3px;
+  top: 74px;
 
   font-size: 26px;
 
@@ -408,11 +357,12 @@ body {
 }
 
 
-/* Strawberry */
+/* 🍓 Strawberry */
+
 .equipped.erdbeere,
 .equipped.strawberry {
-  left: 0;
-  top: 72px;
+  left: 3px;
+  top: 76px;
 
   font-size: 25px;
 
@@ -420,20 +370,22 @@ body {
 }
 
 
-/* Teddy */
+/* 🧸 Teddy */
+
 .equipped.teddy {
   right: -8px;
-  top: 82px;
+  top: 88px;
 
   font-size: 30px;
 }
 
 
-/* Crown */
+/* 👑 Crown */
+
 .equipped.krone,
 .equipped.crown {
   left: 50%;
-  top: -33px;
+  top: -36px;
 
   transform: translateX(-50%);
 
@@ -441,9 +393,9 @@ body {
 }
 
 
-/* =========================
+/* =========================================================
    MESSAGE
-========================= */
+========================================================= */
 
 .message {
   text-align: center;
@@ -458,9 +410,9 @@ body {
 }
 
 
-/* =========================
+/* =========================================================
    STATUS
-========================= */
+========================================================= */
 
 .status {
   text-align: center;
@@ -496,9 +448,9 @@ body {
 }
 
 
-/* =========================
+/* =========================================================
    STATS
-========================= */
+========================================================= */
 
 .stats {
   display: grid;
@@ -536,9 +488,9 @@ body {
 }
 
 
-/* =========================
+/* =========================================================
    ACTIONS
-========================= */
+========================================================= */
 
 .actions {
   display: grid;
@@ -572,9 +524,9 @@ body {
 }
 
 
-/* =========================
+/* =========================================================
    REWARDS
-========================= */
+========================================================= */
 
 .rewards {
   display: grid;
@@ -630,9 +582,9 @@ body {
 }
 
 
-/* =========================
+/* =========================================================
    SHOP
-========================= */
+========================================================= */
 
 .shop {
   display: grid;
@@ -695,9 +647,9 @@ body {
 }
 
 
-/* =========================
+/* =========================================================
    INVENTORY
-========================= */
+========================================================= */
 
 .inventory {
   display: flex;
@@ -734,9 +686,9 @@ body {
 }
 
 
-/* =========================
+/* =========================================================
    HEARTS
-========================= */
+========================================================= */
 
 .heart {
   position: absolute;
@@ -772,9 +724,9 @@ body {
 }
 
 
-/* =========================
-   RESPONSIVE
-========================= */
+/* =========================================================
+   MOBILE
+========================================================= */
 
 @media(max-width:700px) {
 
@@ -797,9 +749,9 @@ body {
 <div class="container">
 
 
-<!-- =========================
+<!-- ======================================================
      HEADER
-========================= -->
+======================================================= -->
 
 <div class="header">
 
@@ -814,9 +766,9 @@ body {
 </div>
 
 
-<!-- =========================
+<!-- ======================================================
      MOCHI
-========================= -->
+======================================================= -->
 
 <div class="card">
 
@@ -830,15 +782,6 @@ body {
 
       <div class="ear left"></div>
       <div class="ear right"></div>
-
-
-      <!-- BODY -->
-
-      <div class="paw left"></div>
-      <div class="paw right"></div>
-
-      <div class="foot left"></div>
-      <div class="foot right"></div>
 
 
       <!-- HEAD -->
@@ -858,6 +801,8 @@ body {
         </div>
 
 
+        <!-- WHISKERS -->
+
         <div class="whisker left one"></div>
         <div class="whisker left two"></div>
 
@@ -876,6 +821,8 @@ body {
   </div>
 
 
+  <!-- MESSAGE -->
+
   <div
     class="message"
     id="message"
@@ -883,6 +830,8 @@ body {
     Yay! Du hast gelernt! Mochi ist stolz! 🐰💗
   </div>
 
+
+  <!-- STATUS -->
 
   <div class="status">
 
@@ -1012,9 +961,9 @@ body {
 </div>
 
 
-<!-- =========================
+<!-- ======================================================
      REWARDS
-========================= -->
+======================================================= -->
 
 <div class="card">
 
@@ -1045,7 +994,7 @@ body {
       +10 XP · +5 🪙
 
       <small>
-        1× täglich
+        1× daily
       </small>
 
     </button>
@@ -1066,7 +1015,7 @@ body {
       +20 XP · +10 🪙
 
       <small>
-        1× täglich
+        1× daily
       </small>
 
     </button>
@@ -1087,7 +1036,7 @@ body {
       +50 XP · +25 🪙
 
       <small>
-        1× täglich
+        1× daily
       </small>
 
     </button>
@@ -1108,7 +1057,7 @@ body {
       +30 XP · +15 🪙
 
       <small>
-        1× täglich
+        1× daily
       </small>
 
     </button>
@@ -1118,9 +1067,9 @@ body {
 </div>
 
 
-<!-- =========================
+<!-- ======================================================
      SHOP
-========================= -->
+======================================================= -->
 
 <div class="card">
 
@@ -1156,9 +1105,9 @@ body {
 </div>
 
 
-<!-- =========================
+<!-- ======================================================
      INVENTORY
-========================= -->
+======================================================= -->
 
 <div class="card">
 
@@ -1602,7 +1551,7 @@ function pet() {
 
   const mochi =
     document.querySelector(
-      ".mochi"
+      ".mochi-head"
     );
 
 
@@ -1617,7 +1566,7 @@ function pet() {
 
       {
         transform:
-          "translateX(-50%) scale(1.05)"
+          "translateX(-50%) scale(1.06)"
       },
 
       {
@@ -1717,7 +1666,8 @@ function addXP(amount) {
   save.xp += amount;
 
 
-  let leveledUp = false;
+  let leveledUp =
+    false;
 
 
   while (
@@ -1729,7 +1679,8 @@ function addXP(amount) {
 
     save.level++;
 
-    leveledUp = true;
+    leveledUp =
+      true;
 
   }
 
@@ -1791,18 +1742,8 @@ function claimReward(type) {
 
 
   /*
-     VERY IMPORTANT:
-
-     Each reward has its own date.
-
-     Therefore:
-     - Study can be claimed once today.
-     - Homework can be claimed once today.
-     - Grade can be claimed once today.
-     - Goal can be claimed once today.
-
-     Clicking again on the same reward
-     does NOTHING until tomorrow.
+     Each reward can only be collected
+     once per day.
   */
 
   if (
@@ -2035,7 +1976,7 @@ function unequipItem(id) {
 
 
 /* =========================================================
-   SHOP RENDER
+   SHOP
 ========================================================= */
 
 function renderShop() {
@@ -2155,7 +2096,7 @@ function renderShop() {
 
 
 /* =========================================================
-   INVENTORY RENDER
+   INVENTORY
 ========================================================= */
 
 function renderInventory() {
@@ -2274,7 +2215,7 @@ function renderInventory() {
 
 
 /* =========================================================
-   ACCESSORIES ON MOCHI
+   ACCESSORIES
 ========================================================= */
 
 function renderAccessories() {
@@ -2332,7 +2273,7 @@ function renderAccessories() {
 
 
 /* =========================================================
-   DAILY BUTTON STATUS
+   DAILY REWARD BUTTONS
 ========================================================= */
 
 function renderRewards() {
