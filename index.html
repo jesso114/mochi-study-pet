@@ -6,1021 +6,1812 @@
 <title>Mochi Study Pet ♡</title>
 
 <style>
-*{box-sizing:border-box}
-
-body{
-  margin:0;
-  font-family:"Trebuchet MS",Arial,sans-serif;
-  background:#f7f1ed;
-  color:#514a47;
+* {
+  box-sizing: border-box;
 }
 
-.app{
-  max-width:760px;
-  margin:auto;
-  padding:18px;
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background: #f5f2f0;
+  color: #55504d;
 }
 
-.header{
-  text-align:center;
-  margin-bottom:15px;
+.container {
+  width: min(900px, 94%);
+  margin: 30px auto 60px;
 }
 
-.header h1{
-  margin:0;
-  font-size:29px;
-  letter-spacing:.2px;
+.header {
+  text-align: center;
+  margin-bottom: 20px;
 }
 
-.header p{
-  margin:5px 0 0;
-  color:#978a84;
-  font-size:14px;
+.header h1 {
+  margin: 0;
+  font-size: 30px;
+  color: #44413f;
 }
 
-/* MAIN CARD */
-
-.card{
-  background:rgba(255,255,255,.82);
-  border:1px solid #eaded8;
-  border-radius:25px;
-  padding:18px;
-  margin-bottom:15px;
-  box-shadow:0 7px 25px rgba(100,80,70,.07);
+.header p {
+  margin: 6px 0 0;
+  color: #8b8581;
+  font-size: 14px;
 }
 
-/* ROOM */
-
-.room{
-  position:relative;
-  height:310px;
-  overflow:hidden;
-  border-radius:22px;
-  background:#eee4de;
-  border:1px solid #e5d7d0;
+.card {
+  background: rgba(255,255,255,.88);
+  border: 1px solid #e5dfdc;
+  border-radius: 24px;
+  padding: 22px;
+  margin-bottom: 18px;
+  box-shadow: 0 8px 25px rgba(80,70,65,.05);
 }
 
-/* window */
+/* =========================
+   MOCHI ROOM
+========================= */
 
-.window{
-  position:absolute;
-  top:22px;
-  left:50%;
-  transform:translateX(-50%);
-  width:145px;
-  height:100px;
-  border:8px solid #ded0c9;
-  border-radius:18px;
-  background:#dce8e7;
-  overflow:hidden;
-}
+.mochi-room {
+  height: 330px;
+  border-radius: 22px;
+  overflow: hidden;
+  position: relative;
 
-.window:before{
-  content:"";
-  position:absolute;
-  width:100%;
-  height:100%;
   background:
-    radial-gradient(circle at 25% 35%,#fff 0 9px,transparent 10px),
-    radial-gradient(circle at 65% 25%,#fff 0 11px,transparent 12px),
-    linear-gradient(#dce9ea,#f8e7df);
-  opacity:.8;
+    linear-gradient(
+      to bottom,
+      #eee8e6 0%,
+      #eee8e6 68%,
+      #cdbbb0 68%,
+      #cdbbb0 100%
+    );
+
+  border: 1px solid #ded6d2;
 }
 
-.window:after{
-  content:"";
-  position:absolute;
-  left:50%;
-  top:0;
-  width:5px;
-  height:100%;
-  background:#ded0c9;
-  transform:translateX(-50%);
+/* little shelf */
+.mochi-room::after {
+  content: "🌱";
+  position: absolute;
+  right: 55px;
+  top: 48px;
+  font-size: 30px;
 }
 
-/* shelf */
+/* =========================
+   MOCHI
+========================= */
 
-.shelf{
-  position:absolute;
-  right:24px;
-  top:52px;
-  width:115px;
-  height:8px;
-  background:#cdbcb3;
-  border-radius:5px;
+.mochi {
+  position: absolute;
+
+  left: 50%;
+  bottom: 28px;
+
+  width: 120px;
+  height: 145px;
+
+  transform: translateX(-50%);
+
+  background: #d6d6d4;
+
+  border: 2px solid #c3c3c1;
+
+  border-radius: 50% 50% 42% 42%;
+
+  z-index: 5;
 }
 
-.plant{
-  position:absolute;
-  right:55px;
-  top:18px;
-  font-size:32px;
+
+/* =========================
+   HEAD
+   WICHTIG:
+   Kopf liegt VOR dem Körper
+========================= */
+
+.mochi-head {
+  position: absolute;
+
+  left: 50%;
+  top: -45px;
+
+  width: 145px;
+  height: 125px;
+
+  transform: translateX(-50%);
+
+  background: #d6d6d4;
+
+  border: 2px solid #c3c3c1;
+
+  border-radius: 52% 52% 47% 47%;
+
+  z-index: 20;
 }
 
-/* floor */
 
-.floor{
-  position:absolute;
-  bottom:0;
-  width:100%;
-  height:70px;
-  background:#e3d2c9;
-  border-top:2px solid #d4c1b8;
+/* =========================
+   EARS
+   Hinter dem Kopf
+========================= */
+
+.ear {
+  position: absolute;
+
+  width: 38px;
+  height: 90px;
+
+  background: #d6d6d4;
+
+  border: 2px solid #c3c3c1;
+
+  border-radius: 55% 55% 45% 45%;
+
+  top: -76px;
+
+  z-index: 10;
 }
 
-/* bunny */
+.ear::after {
+  content: "";
 
-.bunny{
-  position:absolute;
-  left:50%;
-  bottom:42px;
-  transform:translateX(-50%);
-  width:145px;
-  height:165px;
-  cursor:pointer;
-  transition:.25s;
-  z-index:5;
+  position: absolute;
+
+  left: 7px;
+  top: 8px;
+
+  width: 20px;
+  height: 66px;
+
+  background: #e79aa5;
+
+  border-radius: 50%;
 }
 
-.bunny:hover{
-  transform:translateX(-50%) scale(1.04);
+.ear.left {
+  left: 21px;
+  transform: rotate(-7deg);
 }
 
-.ear{
-  position:absolute;
-  width:47px;
-  height:105px;
-  top:0;
-  background:#c7c7c9;
-  border-radius:50% 50% 45% 45%;
+.ear.right {
+  right: 21px;
+  transform: rotate(7deg);
 }
 
-.ear.left{
-  left:16px;
-  transform:rotate(-8deg);
+
+/* =========================
+   FACE
+========================= */
+
+.eye {
+  position: absolute;
+
+  top: 48px;
+
+  width: 8px;
+  height: 12px;
+
+  background: #484645;
+
+  border-radius: 50%;
+
+  z-index: 25;
 }
 
-.ear.right{
-  right:16px;
-  transform:rotate(8deg);
+.eye.left {
+  left: 43px;
 }
 
-.ear:after{
-  content:"";
-  position:absolute;
-  width:20px;
-  height:73px;
-  top:15px;
-  left:50%;
-  transform:translateX(-50%);
-  background:#e7b9bd;
-  border-radius:50%;
+.eye.right {
+  right: 43px;
 }
 
-.head{
-  position:absolute;
-  left:8px;
-  top:48px;
-  width:129px;
-  height:104px;
-  background:#cfcfd1;
-  border-radius:50% 50% 46% 46%;
-  box-shadow:inset 0 -6px 0 rgba(0,0,0,.03);
+.nose {
+  position: absolute;
+
+  top: 69px;
+  left: 50%;
+
+  transform: translateX(-50%);
+
+  width: 13px;
+  height: 9px;
+
+  background: #df8d99;
+
+  border-radius: 50%;
+
+  z-index: 25;
 }
 
-.eye{
-  position:absolute;
-  top:38px;
-  width:9px;
-  height:13px;
-  background:#403b3a;
-  border-radius:50%;
+.mouth {
+  position: absolute;
+
+  top: 77px;
+  left: 50%;
+
+  transform: translateX(-50%);
+
+  font-size: 14px;
+
+  color: #55504d;
+
+  z-index: 25;
 }
 
-.eye.left{left:39px}
-.eye.right{right:39px}
 
-.nose{
-  position:absolute;
-  left:50%;
-  top:54px;
-  transform:translateX(-50%);
-  width:11px;
-  height:8px;
-  background:#d98992;
-  border-radius:50%;
+/* =========================
+   WHISKERS
+========================= */
+
+.whisker {
+  position: absolute;
+
+  width: 35px;
+  height: 1px;
+
+  background: #aaa6a3;
+
+  z-index: 24;
 }
 
-.mouth{
-  position:absolute;
-  left:50%;
-  top:61px;
-  transform:translateX(-50%);
-  font-size:18px;
-  color:#514a47;
+.whisker.left.one {
+  left: -28px;
+  top: 77px;
+  transform: rotate(-10deg);
 }
 
-.cheek{
-  position:absolute;
-  top:57px;
-  width:22px;
-  height:10px;
-  background:#e8bfc1;
-  border-radius:50%;
-  opacity:.65;
+.whisker.left.two {
+  left: -30px;
+  top: 87px;
+  transform: rotate(5deg);
 }
 
-.cheek.left{left:17px}
-.cheek.right{right:17px}
-
-.body{
-  position:absolute;
-  bottom:0;
-  left:35px;
-  width:75px;
-  height:50px;
-  background:#c7c7c9;
-  border-radius:50% 50% 40% 40%;
+.whisker.right.one {
+  right: -28px;
+  top: 77px;
+  transform: rotate(10deg);
 }
 
-/* animations */
-
-.bunny.happy{
-  animation:bounce .65s ease;
+.whisker.right.two {
+  right: -30px;
+  top: 87px;
+  transform: rotate(-5deg);
 }
 
-.bunny.eating{
-  animation:eat .7s ease;
+
+/* =========================
+   PAWS
+========================= */
+
+.paw {
+  position: absolute;
+
+  width: 42px;
+  height: 28px;
+
+  background: #d6d6d4;
+
+  border: 2px solid #c3c3c1;
+
+  border-radius: 50%;
+
+  bottom: 20px;
+
+  z-index: 15;
 }
 
-.bunny.sleeping{
-  animation:sleep .9s ease-in-out infinite alternate;
+.paw.left {
+  left: -8px;
+  transform: rotate(15deg);
 }
 
-@keyframes bounce{
-  0%,100%{bottom:42px}
-  45%{bottom:65px}
+.paw.right {
+  right: -8px;
+  transform: rotate(-15deg);
 }
 
-@keyframes eat{
-  0%,100%{transform:translateX(-50%)}
-  50%{transform:translateX(-50%) scale(.94)}
+
+/* =========================
+   FEET
+========================= */
+
+.foot {
+  position: absolute;
+
+  width: 44px;
+  height: 25px;
+
+  background: #d6d6d4;
+
+  border: 2px solid #c3c3c1;
+
+  border-radius: 50%;
+
+  bottom: -7px;
+
+  z-index: 10;
 }
 
-@keyframes sleep{
-  from{transform:translateX(-50%) translateY(2px)}
-  to{transform:translateX(-50%) translateY(8px)}
+.foot.left {
+  left: 12px;
 }
 
-/* speech */
-
-.speech{
-  position:absolute;
-  left:18px;
-  top:20px;
-  background:white;
-  padding:10px 13px;
-  border-radius:15px;
-  font-size:12px;
-  max-width:180px;
-  box-shadow:0 4px 15px rgba(80,60,50,.08);
-  z-index:10;
+.foot.right {
+  right: 12px;
 }
 
-.speech:after{
-  content:"";
-  position:absolute;
-  bottom:-7px;
-  left:25px;
-  border-width:7px 7px 0 0;
-  border-style:solid;
-  border-color:white transparent transparent transparent;
+
+/* =========================
+   ACCESSORIES
+========================= */
+
+#equippedItems {
+  position: absolute;
+
+  left: 0;
+  top: 0;
+
+  width: 100%;
+  height: 100%;
+
+  z-index: 50;
+
+  pointer-events: none;
 }
 
-/* stats */
+.equipped {
+  position: absolute;
 
-.level{
-  text-align:center;
-  margin-top:15px;
-  font-size:14px;
+  z-index: 50;
+
+  pointer-events: none;
+
+  line-height: 1;
 }
 
-.xpbar{
-  height:9px;
-  margin:7px auto 0;
-  max-width:420px;
-  background:#e8dfda;
-  border-radius:20px;
-  overflow:hidden;
+
+/* Bow */
+.equipped.schleife,
+.equipped.bow {
+  left: 50%;
+  top: -25px;
+
+  transform: translateX(-50%);
+
+  font-size: 30px;
 }
 
-.xpfill{
-  height:100%;
-  width:0;
-  background:#d7b6b1;
-  border-radius:20px;
-  transition:.4s;
+
+/* Flower */
+.equipped.blume,
+.equipped.flower {
+  left: 12px;
+  top: -15px;
+
+  font-size: 27px;
+
+  transform: rotate(-10deg);
 }
 
-.stats{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:9px;
-  margin-top:15px;
+
+/* Carrot */
+.equipped.karotte,
+.equipped.carrot {
+  right: 0;
+  top: 70px;
+
+  font-size: 26px;
+
+  transform: rotate(15deg);
 }
 
-.stat{
-  background:#faf6f3;
-  padding:11px 7px;
-  border-radius:15px;
-  text-align:center;
-  font-size:12px;
+
+/* Strawberry */
+.equipped.erdbeere,
+.equipped.strawberry {
+  left: 0;
+  top: 72px;
+
+  font-size: 25px;
+
+  transform: rotate(-10deg);
 }
 
-.stat strong{
-  display:block;
-  font-size:14px;
-  margin-top:3px;
+
+/* Teddy */
+.equipped.teddy {
+  right: -8px;
+  top: 82px;
+
+  font-size: 30px;
 }
 
-.mini{
-  height:6px;
-  background:#e9e1dd;
-  border-radius:20px;
-  overflow:hidden;
-  margin-top:6px;
+
+/* Crown */
+.equipped.krone,
+.equipped.crown {
+  left: 50%;
+  top: -33px;
+
+  transform: translateX(-50%);
+
+  font-size: 32px;
 }
 
-.mini div{
-  height:100%;
-  width:50%;
-  background:#cdb9b2;
-  border-radius:20px;
+
+/* =========================
+   MESSAGE
+========================= */
+
+.message {
+  text-align: center;
+
+  min-height: 28px;
+
+  font-weight: bold;
+
+  color: #75645d;
+
+  margin-top: 10px;
 }
 
-/* actions */
 
-.actions{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:8px;
-  margin-top:14px;
+/* =========================
+   STATUS
+========================= */
+
+.status {
+  text-align: center;
+
+  font-weight: bold;
+
+  margin-top: 5px;
 }
 
-button{
-  border:0;
-  border-radius:15px;
-  padding:11px 5px;
-  background:#f1e4df;
-  color:#514a47;
-  font-weight:bold;
-  cursor:pointer;
-  font-family:inherit;
-  transition:.18s;
+.xp-bar {
+  width: 100%;
+  height: 9px;
+
+  margin: 10px 0 18px;
+
+  background: #e6e1df;
+
+  border-radius: 20px;
+
+  overflow: hidden;
 }
 
-button:hover{
-  transform:translateY(-2px);
-  background:#ead6d1;
+.xp-fill {
+  height: 100%;
+
+  width: 0%;
+
+  background: #dba6ad;
+
+  border-radius: 20px;
+
+  transition: width .35s ease;
 }
 
-button:active{
-  transform:scale(.96);
+
+/* =========================
+   STATS
+========================= */
+
+.stats {
+  display: grid;
+
+  grid-template-columns:
+    repeat(3, 1fr);
+
+  gap: 12px;
+
+  margin-bottom: 15px;
 }
 
-button .icon{
-  display:block;
-  font-size:21px;
-  margin-bottom:4px;
+.stat {
+  text-align: center;
+
+  padding: 8px;
+
+  background: #faf8f7;
+
+  border-radius: 15px;
 }
 
-/* reward */
+.stat-name {
+  font-size: 14px;
 
-.reward{
-  background:#fff5e7;
-  border-color:#ead8bd;
+  color: #77716d;
 }
 
-.reward-title{
-  font-size:17px;
-  font-weight:bold;
+.stat-value {
+  font-size: 19px;
+
+  font-weight: bold;
+
+  margin-top: 3px;
 }
 
-.reward p{
-  font-size:13px;
-  color:#81756f;
+
+/* =========================
+   ACTIONS
+========================= */
+
+.actions {
+  display: grid;
+
+  grid-template-columns:
+    repeat(4, 1fr);
+
+  gap: 10px;
 }
 
-.reward-buttons{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:8px;
+.action {
+  border: none;
+
+  background: #f1e8e6;
+
+  color: #554c49;
+
+  border-radius: 15px;
+
+  padding: 12px 8px;
+
+  cursor: pointer;
+
+  transition: .15s;
 }
 
-.reward-buttons button{
-  background:#ead8b8;
+.action:hover {
+  transform: translateY(-2px);
+
+  background: #eadcda;
 }
 
-.reward-buttons button:disabled{
-  opacity:.4;
-  cursor:not-allowed;
+
+/* =========================
+   REWARDS
+========================= */
+
+.rewards {
+  display: grid;
+
+  grid-template-columns:
+    repeat(4, 1fr);
+
+  gap: 10px;
 }
 
-/* shop */
+.reward {
+  border: none;
 
-.shop{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:9px;
+  border-radius: 15px;
+
+  background: #f4eeec;
+
+  color: #514b48;
+
+  padding: 14px 8px;
+
+  min-height: 80px;
+
+  cursor: pointer;
+
+  transition: .15s;
 }
 
-.item{
-  background:#faf6f3;
-  border-radius:16px;
-  padding:11px 5px;
-  text-align:center;
-  font-size:12px;
+.reward:hover:not(:disabled) {
+  transform: translateY(-2px);
+
+  background: #eee2df;
 }
 
-.item-icon{
-  font-size:29px;
-  margin-bottom:3px;
+.reward:disabled {
+  opacity: .55;
+
+  cursor: default;
 }
 
-.item button{
-  margin-top:7px;
-  width:100%;
-  padding:7px 3px;
-  font-size:11px;
+.reward strong {
+  display: block;
+
+  margin-bottom: 5px;
 }
 
-/* inventory */
+.reward small {
+  display: block;
 
-.inventory{
-  display:flex;
-  flex-wrap:wrap;
-  gap:7px;
-  margin-top:10px;
+  margin-top: 7px;
+
+  color: #817a76;
 }
 
-.badge{
-  background:#f2e5df;
-  border-radius:20px;
-  padding:6px 10px;
-  font-size:12px;
+
+/* =========================
+   SHOP
+========================= */
+
+.shop {
+  display: grid;
+
+  grid-template-columns:
+    repeat(4, 1fr);
+
+  gap: 12px;
 }
 
-/* toast */
+.shop-item {
+  background: #faf8f7;
 
-.toast{
-  position:fixed;
-  left:50%;
-  bottom:22px;
-  transform:translateX(-50%) translateY(20px);
-  background:#514a47;
-  color:white;
-  padding:10px 16px;
-  border-radius:20px;
-  opacity:0;
-  pointer-events:none;
-  transition:.3s;
-  font-size:13px;
-  z-index:99;
+  border-radius: 17px;
+
+  padding: 14px 8px;
+
+  text-align: center;
 }
 
-.toast.show{
-  opacity:1;
-  transform:translateX(-50%) translateY(0);
+.shop-emoji {
+  font-size: 31px;
+
+  margin-bottom: 5px;
 }
 
-.footer{
-  text-align:center;
-  color:#a0948f;
-  font-size:11px;
-  padding:5px;
+.shop-name {
+  font-weight: bold;
+
+  margin-bottom: 4px;
 }
 
-@media(max-width:520px){
-  .actions{
-    grid-template-columns:repeat(2,1fr);
+.shop-price {
+  color: #817a76;
+
+  font-size: 13px;
+
+  margin-bottom: 8px;
+}
+
+.shop-item button,
+.inventory-item button {
+  border: none;
+
+  background: #e9d9d5;
+
+  color: #554b48;
+
+  border-radius: 10px;
+
+  padding: 7px 12px;
+
+  cursor: pointer;
+}
+
+.shop-item button:disabled {
+  opacity: .5;
+
+  cursor: default;
+}
+
+
+/* =========================
+   INVENTORY
+========================= */
+
+.inventory {
+  display: flex;
+
+  flex-wrap: wrap;
+
+  gap: 8px;
+}
+
+.inventory-item {
+  display: flex;
+
+  align-items: center;
+
+  gap: 7px;
+
+  background: #f4eeec;
+
+  border-radius: 13px;
+
+  padding: 8px 10px;
+}
+
+.inventory-item button {
+  padding: 5px 9px;
+
+  font-size: 12px;
+}
+
+.inventory-status {
+  font-size: 11px;
+
+  color: #9b7e77;
+}
+
+
+/* =========================
+   HEARTS
+========================= */
+
+.heart {
+  position: absolute;
+
+  font-size: 24px;
+
+  pointer-events: none;
+
+  z-index: 100;
+
+  animation:
+    floatHeart 1s ease forwards;
+}
+
+@keyframes floatHeart {
+
+  0% {
+    opacity: 1;
+
+    transform:
+      translateY(0)
+      scale(1);
   }
 
-  .stats{
-    grid-template-columns:1fr;
+  100% {
+    opacity: 0;
+
+    transform:
+      translateY(-70px)
+      scale(1.35);
   }
 
-  .shop{
-    grid-template-columns:repeat(2,1fr);
-  }
-
-  .reward-buttons{
-    grid-template-columns:1fr;
-  }
 }
+
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media(max-width:700px) {
+
+  .stats,
+  .actions,
+  .rewards,
+  .shop {
+    grid-template-columns:
+      repeat(2, 1fr);
+  }
+
+}
+
 </style>
 </head>
 
+
 <body>
 
-<div class="app">
+<div class="container">
 
-  <div class="header">
-    <h1>Meet Mochi ♡</h1>
-    <p>Your little study buddy 🐰</p>
+
+<!-- =========================
+     HEADER
+========================= -->
+
+<div class="header">
+
+  <h1>
+    Meet Mochi ♡
+  </h1>
+
+  <p>
+    Your little study buddy 🐰
+  </p>
+
+</div>
+
+
+<!-- =========================
+     MOCHI
+========================= -->
+
+<div class="card">
+
+  <div class="mochi-room">
+
+
+    <div class="mochi">
+
+
+      <!-- EARS -->
+
+      <div class="ear left"></div>
+      <div class="ear right"></div>
+
+
+      <!-- BODY -->
+
+      <div class="paw left"></div>
+      <div class="paw right"></div>
+
+      <div class="foot left"></div>
+      <div class="foot right"></div>
+
+
+      <!-- HEAD -->
+
+      <div class="mochi-head">
+
+
+        <div class="eye left"></div>
+        <div class="eye right"></div>
+
+
+        <div class="nose"></div>
+
+
+        <div class="mouth">
+          ⌣
+        </div>
+
+
+        <div class="whisker left one"></div>
+        <div class="whisker left two"></div>
+
+        <div class="whisker right one"></div>
+        <div class="whisker right two"></div>
+
+
+        <!-- ACCESSORIES -->
+
+        <div id="equippedItems"></div>
+
+      </div>
+
+    </div>
+
   </div>
 
-  <div class="card">
 
-    <div class="room">
+  <div
+    class="message"
+    id="message"
+  >
+    Yay! Du hast gelernt! Mochi ist stolz! 🐰💗
+  </div>
 
-      <div class="window"></div>
 
-      <div class="shelf"></div>
+  <div class="status">
 
-      <div class="plant">🌿</div>
+    ⭐ Level
+    <span id="level">1</span>
 
-      <div class="speech" id="speech">
-        Let's have a productive day! ♡
+    ·
+
+    <span id="xp">0</span>
+    /
+    <span id="xpMax">100</span>
+    XP
+
+    ·
+
+    🪙
+    <span id="coins">0</span>
+
+  </div>
+
+
+  <div class="xp-bar">
+
+    <div
+      class="xp-fill"
+      id="xpFill"
+    ></div>
+
+  </div>
+
+
+  <!-- STATS -->
+
+  <div class="stats">
+
+    <div class="stat">
+
+      <div class="stat-name">
+        💗 Happiness
       </div>
 
-      <div class="bunny" id="bunny" onclick="petMochi()">
-
-        <div class="ear left"></div>
-        <div class="ear right"></div>
-
-        <div class="head">
-
-          <div class="eye left"></div>
-          <div class="eye right"></div>
-
-          <div class="cheek left"></div>
-          <div class="cheek right"></div>
-
-          <div class="nose"></div>
-
-          <div class="mouth">⌣</div>
-
-        </div>
-
-        <div class="body"></div>
-
+      <div
+        class="stat-value"
+        id="happiness"
+      >
+        100
       </div>
-
-      <div class="floor"></div>
 
     </div>
 
 
-    <div class="level">
-      ⭐ Level <strong id="level">1</strong>
-      · <span id="xp">0</span> / <span id="xpNeeded">100</span> XP
-      · 🪙 <strong id="coins">0</strong>
+    <div class="stat">
 
-      <div class="xpbar">
-        <div class="xpfill" id="xpfill"></div>
+      <div class="stat-name">
+        🥕 Hunger
       </div>
+
+      <div
+        class="stat-value"
+        id="hunger"
+      >
+        100
+      </div>
+
     </div>
 
 
-    <div class="stats">
+    <div class="stat">
 
-      <div class="stat">
-        ❤️ Happiness
-        <strong id="happy">80</strong>
-        <div class="mini">
-          <div id="happyBar"></div>
-        </div>
-      </div>
-
-      <div class="stat">
-        🍓 Hunger
-        <strong id="hunger">60</strong>
-        <div class="mini">
-          <div id="hungerBar"></div>
-        </div>
-      </div>
-
-      <div class="stat">
+      <div class="stat-name">
         ⚡ Energy
-        <strong id="energy">70</strong>
-        <div class="mini">
-          <div id="energyBar"></div>
-        </div>
       </div>
 
-    </div>
-
-
-    <div class="actions">
-
-      <button onclick="feed()">
-        <span class="icon">🍎</span>
-        Füttern
-      </button>
-
-      <button onclick="petMochi()">
-        <span class="icon">💕</span>
-        Streicheln
-      </button>
-
-      <button onclick="play()">
-        <span class="icon">🎾</span>
-        Spielen
-      </button>
-
-      <button onclick="sleep()">
-        <span class="icon">🌙</span>
-        Schlafen
-      </button>
+      <div
+        class="stat-value"
+        id="energy"
+      >
+        100
+      </div>
 
     </div>
 
   </div>
 
 
-  <!-- STUDY REWARDS -->
+  <!-- ACTIONS -->
 
-  <div class="card reward">
+  <div class="actions">
 
-    <div class="reward-title">
-      🎁 Study Rewards
-    </div>
-
-    <p>
-      Aufgabe in Notion erledigt? Hol dir deine XP! ♡
-    </p>
-
-    <div class="reward-buttons">
-
-      <button id="reward10" onclick="claimReward(10,5)">
-        ✨ +10 XP<br>+5 🪙
-      </button>
-
-      <button id="reward20" onclick="claimReward(20,10)">
-        📚 +20 XP<br>+10 🪙
-      </button>
-
-      <button id="reward50" onclick="claimReward(50,25)">
-        🏆 +50 XP<br>+25 🪙
-      </button>
-
-    </div>
-
-    <p id="rewardMessage" style="text-align:center;margin-bottom:0;"></p>
-
-  </div>
+    <button
+      class="action"
+      onclick="feed()"
+    >
+      🍎<br>
+      Füttern
+    </button>
 
 
-  <!-- SHOP -->
-
-  <div class="card">
-
-    <div class="reward-title">
-      🛍️ Mochi's little shop
-    </div>
-
-    <p style="font-size:12px;color:#8c817c;">
-      Buy cute things with your study coins ♡
-    </p>
-
-    <div class="shop">
-
-      <div class="item">
-        <div class="item-icon">🎀</div>
-        Bow
-        <button onclick="buyItem('bow',20,'🎀')">
-          20 🪙
-        </button>
-      </div>
-
-      <div class="item">
-        <div class="item-icon">🥕</div>
-        Carrot
-        <button onclick="buyItem('carrot',10,'🥕')">
-          10 🪙
-        </button>
-      </div>
-
-      <div class="item">
-        <div class="item-icon">🌸</div>
-        Flower
-        <button onclick="buyItem('flower',30,'🌸')">
-          30 🪙
-        </button>
-      </div>
-
-      <div class="item">
-        <div class="item-icon">🧸</div>
-        Teddy
-        <button onclick="buyItem('teddy',50,'🧸')">
-          50 🪙
-        </button>
-      </div>
-
-    </div>
+    <button
+      class="action"
+      onclick="pet()"
+    >
+      💕<br>
+      Streicheln
+    </button>
 
 
-    <div style="margin-top:16px;font-weight:bold;font-size:13px;">
-      🎒 Mochi's Inventory
-    </div>
-
-    <div class="inventory" id="inventory">
-      <span class="badge">Nothing yet ♡</span>
-    </div>
-
-  </div>
+    <button
+      class="action"
+      onclick="play()"
+    >
+      🎾<br>
+      Spielen
+    </button>
 
 
-  <div class="footer">
-    Study ♡ Care ♡ Grow ♡ Together
+    <button
+      class="action"
+      onclick="sleep()"
+    >
+      😴<br>
+      Schlafen
+    </button>
+
   </div>
 
 </div>
 
-<div class="toast" id="toast"></div>
+
+<!-- =========================
+     REWARDS
+========================= -->
+
+<div class="card">
+
+  <h2>
+    🎁 Study Rewards
+  </h2>
+
+  <div class="subtitle">
+    Aufgabe in Notion erledigt? Hol dir deine XP! ♡
+  </div>
+
+
+  <div class="rewards">
+
+
+    <button
+      class="reward"
+      id="rewardStudy"
+      onclick="claimReward('study')"
+    >
+
+      📚
+
+      <strong>
+        Lernen
+      </strong>
+
+      +10 XP · +5 🪙
+
+      <small>
+        1× täglich
+      </small>
+
+    </button>
+
+
+    <button
+      class="reward"
+      id="rewardHomework"
+      onclick="claimReward('homework')"
+    >
+
+      ✏️
+
+      <strong>
+        Hausaufgabe
+      </strong>
+
+      +20 XP · +10 🪙
+
+      <small>
+        1× täglich
+      </small>
+
+    </button>
+
+
+    <button
+      class="reward"
+      id="rewardGrade"
+      onclick="claimReward('grade')"
+    >
+
+      ⭐
+
+      <strong>
+        Gute Note
+      </strong>
+
+      +50 XP · +25 🪙
+
+      <small>
+        1× täglich
+      </small>
+
+    </button>
+
+
+    <button
+      class="reward"
+      id="rewardGoal"
+      onclick="claimReward('goal')"
+    >
+
+      🎯
+
+      <strong>
+        Tagesziel
+      </strong>
+
+      +30 XP · +15 🪙
+
+      <small>
+        1× täglich
+      </small>
+
+    </button>
+
+  </div>
+
+</div>
+
+
+<!-- =========================
+     SHOP
+========================= -->
+
+<div class="card">
+
+  <h2>
+    🛍️ Mochi's little shop
+  </h2>
+
+  <div class="subtitle">
+    New cute things unlock as you level up ♡
+  </div>
+
+
+  <div
+    style="
+      text-align:right;
+      margin-bottom:15px;
+    "
+  >
+
+    🪙
+    <strong id="shopCoins">
+      0
+    </strong>
+
+  </div>
+
+
+  <div
+    class="shop"
+    id="shop"
+  ></div>
+
+</div>
+
+
+<!-- =========================
+     INVENTORY
+========================= -->
+
+<div class="card">
+
+  <h2>
+    🎒 Mochi's Inventory
+  </h2>
+
+  <div class="subtitle">
+    Your items. Equip them or put them away whenever you want.
+  </div>
+
+
+  <div
+    class="inventory"
+    id="inventory"
+  ></div>
+
+</div>
+
+
+</div>
 
 
 <script>
 
-const defaultData = {
+/* =========================================================
+   GAME DATA
+========================================================= */
 
-  xp:0,
-  level:1,
-  coins:0,
+const defaultState = {
 
-  happiness:80,
-  hunger:60,
-  energy:70,
+  level: 1,
+  xp: 0,
+  coins: 0,
 
-  inventory:[]
+  happiness: 100,
+  hunger: 100,
+  energy: 100,
+
+  inventory: ["bow"],
+  equipped: ["bow"],
+
+  rewards: {}
 
 };
 
 
-let data =
-  JSON.parse(localStorage.getItem("mochi2")) ||
-  defaultData;
+let save;
 
 
-function save(){
+/* =========================================================
+   LOAD SAVE
+========================================================= */
+
+try {
+
+  const stored =
+    localStorage.getItem(
+      "mochi_study_pet_2"
+    );
+
+
+  if (stored) {
+
+    const old =
+      JSON.parse(stored);
+
+
+    save = {
+      ...defaultState,
+      ...old
+    };
+
+
+    if (!Array.isArray(save.inventory)) {
+      save.inventory = ["bow"];
+    }
+
+    if (!Array.isArray(save.equipped)) {
+      save.equipped = ["bow"];
+    }
+
+    if (!save.rewards) {
+      save.rewards = {};
+    }
+
+  } else {
+
+    save =
+      JSON.parse(
+        JSON.stringify(
+          defaultState
+        )
+      );
+
+  }
+
+} catch (error) {
+
+  save =
+    JSON.parse(
+      JSON.stringify(
+        defaultState
+      )
+    );
+
+}
+
+
+/* =========================================================
+   ITEMS
+========================================================= */
+
+const items = [
+
+  {
+    id: "bow",
+    name: "Bow",
+    emoji: "🎀",
+    price: 20,
+    type: "accessory",
+    level: 1
+  },
+
+  {
+    id: "carrot",
+    name: "Carrot",
+    emoji: "🥕",
+    price: 10,
+    type: "accessory",
+    level: 1
+  },
+
+  {
+    id: "flower",
+    name: "Flower",
+    emoji: "🌷",
+    price: 30,
+    type: "accessory",
+    level: 1
+  },
+
+  {
+    id: "teddy",
+    name: "Teddy",
+    emoji: "🧸",
+    price: 50,
+    type: "accessory",
+    level: 1
+  },
+
+  {
+    id: "strawberry",
+    name: "Strawberry",
+    emoji: "🍓",
+    price: 25,
+    type: "accessory",
+    level: 3
+  },
+
+  {
+    id: "book",
+    name: "Book",
+    emoji: "📖",
+    price: 40,
+    type: "room",
+    level: 5
+  },
+
+  {
+    id: "plant",
+    name: "Plant",
+    emoji: "🪴",
+    price: 60,
+    type: "room",
+    level: 5
+  },
+
+  {
+    id: "lamp",
+    name: "Lamp",
+    emoji: "💡",
+    price: 80,
+    type: "room",
+    level: 8
+  },
+
+  {
+    id: "carpet",
+    name: "Carpet",
+    emoji: "🧶",
+    price: 100,
+    type: "room",
+    level: 10
+  },
+
+  {
+    id: "bed",
+    name: "Bed",
+    emoji: "🛏️",
+    price: 150,
+    type: "room",
+    level: 10
+  },
+
+  {
+    id: "desk",
+    name: "Desk",
+    emoji: "🪑",
+    price: 180,
+    type: "room",
+    level: 15
+  },
+
+  {
+    id: "bookshelf",
+    name: "Bookshelf",
+    emoji: "📚",
+    price: 200,
+    type: "room",
+    level: 15
+  },
+
+  {
+    id: "moon",
+    name: "Moon Lamp",
+    emoji: "🌙",
+    price: 250,
+    type: "room",
+    level: 20
+  },
+
+  {
+    id: "crown",
+    name: "Crown",
+    emoji: "👑",
+    price: 300,
+    type: "accessory",
+    level: 20
+  }
+
+];
+
+
+/* =========================================================
+   HELPERS
+========================================================= */
+
+function today() {
+
+  const date =
+    new Date();
+
+  return (
+    date.getFullYear() +
+    "-" +
+    String(
+      date.getMonth() + 1
+    ).padStart(2, "0") +
+    "-" +
+    String(
+      date.getDate()
+    ).padStart(2, "0")
+  );
+
+}
+
+
+function saveGame() {
 
   localStorage.setItem(
-    "mochi2",
-    JSON.stringify(data)
+    "mochi_study_pet_2",
+    JSON.stringify(save)
   );
 
 }
 
 
-function clamp(number){
+function getItem(id) {
+
+  return items.find(
+    item => item.id === id
+  );
+
+}
+
+
+function xpNeeded() {
+
+  return 100;
+
+}
+
+
+function clamp(
+  value,
+  min = 0,
+  max = 100
+) {
 
   return Math.max(
-    0,
-    Math.min(100,number)
+    min,
+    Math.min(
+      max,
+      value
+    )
   );
 
 }
 
 
-function showMessage(text){
+/* =========================================================
+   MESSAGE
+========================================================= */
 
-  document.getElementById("speech").textContent =
-    text;
+function message(text) {
 
-}
-
-
-function toast(text){
-
-  const t =
-    document.getElementById("toast");
-
-  t.textContent = text;
-
-  t.classList.add("show");
-
-  setTimeout(()=>{
-    t.classList.remove("show");
-  },1800);
+  document.getElementById(
+    "message"
+  ).textContent = text;
 
 }
 
 
-function animate(type="happy"){
+/* =========================================================
+   HEARTS
+========================================================= */
 
-  const bunny =
-    document.getElementById("bunny");
+function hearts() {
 
-  bunny.classList.remove(
-    "happy",
-    "eating",
-    "sleeping"
+  const room =
+    document.querySelector(
+      ".mochi-room"
+    );
+
+
+  for (
+    let i = 0;
+    i < 3;
+    i++
+  ) {
+
+    const heart =
+      document.createElement(
+        "div"
+      );
+
+
+    heart.className =
+      "heart";
+
+
+    heart.textContent =
+      i % 2 === 0
+        ? "💕"
+        : "💗";
+
+
+    heart.style.left =
+      (
+        44 +
+        Math.random() * 12
+      ) + "%";
+
+
+    heart.style.bottom =
+      (
+        40 +
+        Math.random() * 18
+      ) + "%";
+
+
+    heart.style.animationDelay =
+      (
+        i * .12
+      ) + "s";
+
+
+    room.appendChild(
+      heart
+    );
+
+
+    setTimeout(
+      () => heart.remove(),
+      1300
+    );
+
+  }
+
+}
+
+
+/* =========================================================
+   MOCHI ACTIONS
+========================================================= */
+
+function feed() {
+
+  save.hunger =
+    clamp(
+      save.hunger + 15
+    );
+
+
+  save.happiness =
+    clamp(
+      save.happiness + 3
+    );
+
+
+  message(
+    "🥕 Mochi is happily eating!"
   );
 
-  void bunny.offsetWidth;
 
-  bunny.classList.add(type);
+  hearts();
 
-}
+  saveGame();
 
-
-function update(){
-
-  document.getElementById("level").textContent =
-    data.level;
-
-  document.getElementById("xp").textContent =
-    data.xp;
-
-  document.getElementById("coins").textContent =
-    data.coins;
-
-
-  const needed = 100;
-
-  document.getElementById("xpNeeded").textContent =
-    needed;
-
-  document.getElementById("xpfill").style.width =
-    (data.xp / needed * 100) + "%";
-
-
-  document.getElementById("happy").textContent =
-    data.happiness;
-
-  document.getElementById("hunger").textContent =
-    data.hunger;
-
-  document.getElementById("energy").textContent =
-    data.energy;
-
-
-  document.getElementById("happyBar").style.width =
-    data.happiness + "%";
-
-  document.getElementById("hungerBar").style.width =
-    data.hunger + "%";
-
-  document.getElementById("energyBar").style.width =
-    data.energy + "%";
-
-
-  updateInventory();
-
-  save();
+  render();
 
 }
 
 
-function addXP(amount){
+function pet() {
 
-  data.xp += amount;
+  save.happiness =
+    clamp(
+      save.happiness + 4
+    );
+
+
+  message(
+    "💕 Mochi purrs with happiness!"
+  );
+
+
+  hearts();
+
+
+  const mochi =
+    document.querySelector(
+      ".mochi"
+    );
+
+
+  mochi.animate(
+
+    [
+
+      {
+        transform:
+          "translateX(-50%) scale(1)"
+      },
+
+      {
+        transform:
+          "translateX(-50%) scale(1.05)"
+      },
+
+      {
+        transform:
+          "translateX(-50%) scale(1)"
+      }
+
+    ],
+
+    {
+      duration: 450
+    }
+
+  );
+
+
+  saveGame();
+
+  render();
+
+}
+
+
+function play() {
+
+  if (
+    save.energy < 10
+  ) {
+
+    message(
+      "😴 Mochi is too tired to play."
+    );
+
+    return;
+
+  }
+
+
+  save.happiness =
+    clamp(
+      save.happiness + 10
+    );
+
+
+  save.energy =
+    clamp(
+      save.energy - 10
+    );
+
+
+  message(
+    "🎾 Mochi had lots of fun!"
+  );
+
+
+  hearts();
+
+  saveGame();
+
+  render();
+
+}
+
+
+function sleep() {
+
+  save.energy =
+    100;
+
+
+  save.happiness =
+    clamp(
+      save.happiness + 5
+    );
+
+
+  message(
+    "😴 Mochi slept wonderfully!"
+  );
+
+
+  hearts();
+
+  saveGame();
+
+  render();
+
+}
+
+
+/* =========================================================
+   XP
+========================================================= */
+
+function addXP(amount) {
+
+  save.xp += amount;
+
 
   let leveledUp = false;
 
-  while(data.xp >= 100){
 
-    data.xp -= 100;
+  while (
+    save.xp >= xpNeeded()
+  ) {
 
-    data.level++;
+    save.xp -=
+      xpNeeded();
 
-    data.coins += 20;
+    save.level++;
 
     leveledUp = true;
 
   }
 
 
-  if(leveledUp){
+  if (leveledUp) {
 
-    showMessage(
-      "🎉 LEVEL UP! Mochi ist jetzt Level " +
-      data.level + "! ♡"
+    message(
+      "🎉 Mochi reached Level " +
+      save.level +
+      "!"
     );
 
-    toast(
-      "🎉 Level " + data.level + "! +20 🪙"
-    );
+
+    hearts();
 
   }
 
-  update();
-
 }
 
 
-function claimReward(xp,coins){
+/* =========================================================
+   DAILY REWARDS
+========================================================= */
 
-  addXP(xp);
+const rewardData = {
 
-  data.coins += coins;
+  study: {
+    xp: 10,
+    coins: 5
+  },
 
-  showMessage(
-    "Yay! Du hast gelernt! Mochi ist stolz! 🐰💗"
-  );
+  homework: {
+    xp: 20,
+    coins: 10
+  },
 
-  toast(
-    "+" + xp + " XP  +" + coins + " 🪙"
-  );
+  grade: {
+    xp: 50,
+    coins: 25
+  },
 
-  animate("happy");
+  goal: {
+    xp: 30,
+    coins: 15
+  }
 
-  update();
-
-}
-
-
-function feed(){
-
-  data.hunger =
-    clamp(data.hunger + 20);
-
-  data.energy =
-    clamp(data.energy - 2);
-
-  showMessage(
-    "Nom nom nom! Das war lecker! 🍎"
-  );
-
-  animate("eating");
-
-  update();
-
-}
+};
 
 
-function petMochi(){
+function claimReward(type) {
 
-  data.happiness =
-    clamp(data.happiness + 10);
-
-  showMessage(
-    "Mochi liebt die Kuscheleinheiten! 💕"
-  );
-
-  animate("happy");
-
-  update();
-
-}
+  const reward =
+    rewardData[type];
 
 
-function play(){
-
-  if(data.energy < 15){
-
-    showMessage(
-      "Mochi ist zu müde zum Spielen... 😴"
-    );
-
-    animate("sleeping");
-
+  if (!reward) {
     return;
-
   }
 
-  data.happiness =
-    clamp(data.happiness + 15);
 
-  data.energy =
-    clamp(data.energy - 15);
+  /*
+     VERY IMPORTANT:
 
-  showMessage(
-    "YAAAY! Spielen wir! 🎾"
-  );
+     Each reward has its own date.
 
-  animate("happy");
+     Therefore:
+     - Study can be claimed once today.
+     - Homework can be claimed once today.
+     - Grade can be claimed once today.
+     - Goal can be claimed once today.
 
-  update();
+     Clicking again on the same reward
+     does NOTHING until tomorrow.
+  */
 
-}
+  if (
+    save.rewards[type] ===
+    today()
+  ) {
 
-
-function sleep(){
-
-  data.energy =
-    clamp(data.energy + 30);
-
-  data.happiness =
-    clamp(data.happiness + 3);
-
-  showMessage(
-    "Zzz... Mochi macht ein Nickerchen 🌙"
-  );
-
-  animate("sleeping");
-
-  update();
-
-}
-
-
-function buyItem(id,price,emoji){
-
-  if(data.inventory.includes(id)){
-
-    showMessage(
-      "Das hast du schon! ♡"
+    message(
+      "✨ You already collected this reward today!"
     );
 
     return;
@@ -1028,80 +1819,691 @@ function buyItem(id,price,emoji){
   }
 
 
-  if(data.coins < price){
+  save.rewards[type] =
+    today();
 
-    showMessage(
-      "Mochi braucht noch mehr 🪙!"
+
+  save.coins +=
+    reward.coins;
+
+
+  addXP(
+    reward.xp
+  );
+
+
+  save.happiness =
+    clamp(
+      save.happiness + 2
     );
 
-    toast("Noch nicht genug Coins!");
+
+  message(
+    "🎉 Reward collected! Mochi is proud of you! 💕"
+  );
+
+
+  hearts();
+
+  saveGame();
+
+  render();
+
+}
+
+
+/* =========================================================
+   BUY ITEM
+========================================================= */
+
+function buyItem(id) {
+
+  const item =
+    getItem(id);
+
+
+  if (!item) {
+    return;
+  }
+
+
+  if (
+    save.inventory.includes(
+      id
+    )
+  ) {
+
+    message(
+      "🎒 You already own this item!"
+    );
 
     return;
 
   }
 
 
-  data.coins -= price;
+  if (
+    save.level <
+    item.level
+  ) {
 
-  data.inventory.push(id);
+    message(
+      "🔒 Reach Level " +
+      item.level +
+      " to unlock this!"
+    );
 
-  data.happiness =
-    clamp(data.happiness + 5);
+    return;
+
+  }
 
 
-  showMessage(
-    emoji +
-    " gekauft! Mochi liebt es! ♡"
+  if (
+    save.coins <
+    item.price
+  ) {
+
+    message(
+      "🪙 You don't have enough coins yet!"
+    );
+
+    return;
+
+  }
+
+
+  save.coins -=
+    item.price;
+
+
+  save.inventory.push(
+    id
   );
 
-  toast(
-    emoji + " gekauft!"
+
+  message(
+    item.emoji +
+    " " +
+    item.name +
+    " is now yours! 💕"
   );
 
-  update();
+
+  saveGame();
+
+  render();
 
 }
 
 
-function updateInventory(){
+/* =========================================================
+   EQUIP
+========================================================= */
+
+function equipItem(id) {
+
+  const item =
+    getItem(id);
+
+
+  if (!item) {
+    return;
+  }
+
+
+  if (
+    !save.inventory.includes(
+      id
+    )
+  ) {
+
+    return;
+
+  }
+
+
+  if (
+    item.type ===
+    "accessory"
+  ) {
+
+    if (
+      !save.equipped.includes(
+        id
+      )
+    ) {
+
+      save.equipped.push(
+        id
+      );
+
+    }
+
+
+    message(
+      item.emoji +
+      " " +
+      item.name +
+      " equipped! ✨"
+    );
+
+  }
+
+
+  saveGame();
+
+  render();
+
+}
+
+
+/* =========================================================
+   UNEQUIP
+========================================================= */
+
+function unequipItem(id) {
+
+  const item =
+    getItem(id);
+
+
+  if (!item) {
+    return;
+  }
+
+
+  save.equipped =
+    save.equipped.filter(
+      itemId =>
+        itemId !== id
+    );
+
+
+  message(
+    item.emoji +
+    " " +
+    item.name +
+    " removed."
+  );
+
+
+  saveGame();
+
+  render();
+
+}
+
+
+/* =========================================================
+   SHOP RENDER
+========================================================= */
+
+function renderShop() {
+
+  const shop =
+    document.getElementById(
+      "shop"
+    );
+
+
+  shop.innerHTML = "";
+
+
+  items.forEach(
+    item => {
+
+      const owned =
+        save.inventory.includes(
+          item.id
+        );
+
+
+      const unlocked =
+        save.level >=
+        item.level;
+
+
+      const div =
+        document.createElement(
+          "div"
+        );
+
+
+      div.className =
+        "shop-item";
+
+
+      let buttonText =
+        "Buy";
+
+
+      let disabled =
+        false;
+
+
+      if (owned) {
+
+        buttonText =
+          "Owned";
+
+        disabled =
+          true;
+
+      }
+
+      else if (!unlocked) {
+
+        buttonText =
+          "🔒 Level " +
+          item.level;
+
+        disabled =
+          true;
+
+      }
+
+
+      div.innerHTML = `
+
+        <div class="shop-emoji">
+          ${item.emoji}
+        </div>
+
+        <div class="shop-name">
+          ${item.name}
+        </div>
+
+        <div class="shop-price">
+          🪙 ${item.price}
+        </div>
+
+        <button
+          ${disabled ? "disabled" : ""}
+        >
+          ${buttonText}
+        </button>
+
+      `;
+
+
+      if (!disabled) {
+
+        div
+          .querySelector("button")
+          .addEventListener(
+            "click",
+            () => buyItem(item.id)
+          );
+
+      }
+
+
+      shop.appendChild(
+        div
+      );
+
+    }
+  );
+
+
+  document.getElementById(
+    "shopCoins"
+  ).textContent =
+    save.coins;
+
+}
+
+
+/* =========================================================
+   INVENTORY RENDER
+========================================================= */
+
+function renderInventory() {
+
+  const inventory =
+    document.getElementById(
+      "inventory"
+    );
+
+
+  inventory.innerHTML = "";
+
+
+  if (
+    save.inventory.length ===
+    0
+  ) {
+
+    inventory.innerHTML =
+      "<span style='color:#888'>Your inventory is empty.</span>";
+
+    return;
+
+  }
+
+
+  save.inventory.forEach(
+    id => {
+
+      const item =
+        getItem(id);
+
+
+      if (!item) {
+        return;
+      }
+
+
+      const equipped =
+        save.equipped.includes(
+          id
+        );
+
+
+      const div =
+        document.createElement(
+          "div"
+        );
+
+
+      div.className =
+        "inventory-item";
+
+
+      div.innerHTML = `
+
+        <span>
+          ${item.emoji}
+          ${item.name}
+        </span>
+
+        <span
+          class="inventory-status"
+        >
+          ${
+            equipped
+            ? "✨ Equipped"
+            : ""
+          }
+        </span>
+
+        <button>
+          ${
+            equipped
+            ? "Unequip"
+            : "Equip"
+          }
+        </button>
+
+      `;
+
+
+      const button =
+        div.querySelector(
+          "button"
+        );
+
+
+      if (equipped) {
+
+        button.addEventListener(
+          "click",
+          () => unequipItem(id)
+        );
+
+      }
+
+      else {
+
+        button.addEventListener(
+          "click",
+          () => equipItem(id)
+        );
+
+      }
+
+
+      inventory.appendChild(
+        div
+      );
+
+    }
+  );
+
+}
+
+
+/* =========================================================
+   ACCESSORIES ON MOCHI
+========================================================= */
+
+function renderAccessories() {
 
   const container =
-    document.getElementById("inventory");
+    document.getElementById(
+      "equippedItems"
+    );
 
 
-  if(data.inventory.length === 0){
-
-    container.innerHTML =
-      '<span class="badge">Nothing yet ♡</span>';
-
-    return;
-
-  }
+  container.innerHTML = "";
 
 
-  const names = {
+  save.equipped.forEach(
+    id => {
 
-    bow:"🎀 Bow",
-    carrot:"🥕 Carrot",
-    flower:"🌸 Flower",
-    teddy:"🧸 Teddy"
+      const item =
+        getItem(id);
+
+
+      if (
+        !item ||
+        item.type !==
+        "accessory"
+      ) {
+
+        return;
+
+      }
+
+
+      const div =
+        document.createElement(
+          "div"
+        );
+
+
+      div.className =
+        "equipped " +
+        item.id;
+
+
+      div.textContent =
+        item.emoji;
+
+
+      container.appendChild(
+        div
+      );
+
+    }
+  );
+
+}
+
+
+/* =========================================================
+   DAILY BUTTON STATUS
+========================================================= */
+
+function renderRewards() {
+
+  const mapping = {
+
+    study:
+      "rewardStudy",
+
+    homework:
+      "rewardHomework",
+
+    grade:
+      "rewardGrade",
+
+    goal:
+      "rewardGoal"
 
   };
 
 
-  container.innerHTML =
-    data.inventory
-      .map(item =>
-        '<span class="badge">' +
-        names[item] +
-        '</span>'
-      )
-      .join("");
+  Object.keys(mapping).forEach(
+    type => {
+
+      const button =
+        document.getElementById(
+          mapping[type]
+        );
+
+
+      if (!button) {
+        return;
+      }
+
+
+      const small =
+        button.querySelector(
+          "small"
+        );
+
+
+      if (
+        save.rewards[type] ===
+        today()
+      ) {
+
+        button.disabled =
+          true;
+
+
+        if (small) {
+
+          small.textContent =
+            "✓ Collected today";
+
+        }
+
+      }
+
+      else {
+
+        button.disabled =
+          false;
+
+
+        if (small) {
+
+          small.textContent =
+            "1× daily";
+
+        }
+
+      }
+
+    }
+  );
 
 }
 
 
-update();
+/* =========================================================
+   RENDER EVERYTHING
+========================================================= */
+
+function render() {
+
+  document.getElementById(
+    "level"
+  ).textContent =
+    save.level;
+
+
+  document.getElementById(
+    "xp"
+  ).textContent =
+    save.xp;
+
+
+  document.getElementById(
+    "xpMax"
+  ).textContent =
+    xpNeeded();
+
+
+  document.getElementById(
+    "coins"
+  ).textContent =
+    save.coins;
+
+
+  document.getElementById(
+    "shopCoins"
+  ).textContent =
+    save.coins;
+
+
+  document.getElementById(
+    "happiness"
+  ).textContent =
+    save.happiness;
+
+
+  document.getElementById(
+    "hunger"
+  ).textContent =
+    save.hunger;
+
+
+  document.getElementById(
+    "energy"
+  ).textContent =
+    save.energy;
+
+
+  const percent =
+    (
+      save.xp /
+      xpNeeded()
+    ) * 100;
+
+
+  document.getElementById(
+    "xpFill"
+  ).style.width =
+    Math.max(
+      0,
+      Math.min(
+        100,
+        percent
+      )
+    ) + "%";
+
+
+  renderShop();
+
+  renderInventory();
+
+  renderAccessories();
+
+  renderRewards();
+
+  saveGame();
+
+}
+
+
+/* =========================================================
+   START
+========================================================= */
+
+render();
 
 </script>
 
