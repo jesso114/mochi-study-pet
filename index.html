@@ -1,698 +1,520 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mochi ♡ – Dein kleiner Lernfreund</title>
+<title>Mochi Study Pet ♡</title>
 
 <style>
-* {
-  box-sizing: border-box;
+*{box-sizing:border-box}
+
+body{
+  margin:0;
+  font-family:"Trebuchet MS",Arial,sans-serif;
+  background:#f7f1ed;
+  color:#514a47;
 }
 
-body {
-  margin: 0;
-  font-family: Arial, Helvetica, sans-serif;
-  background: #f4f1ef;
-  color: #4d4a48;
+.app{
+  max-width:760px;
+  margin:auto;
+  padding:18px;
 }
 
-button {
-  font-family: inherit;
+.header{
+  text-align:center;
+  margin-bottom:15px;
 }
 
-.container {
-  width: min(920px, 94%);
-  margin: 30px auto 60px;
+.header h1{
+  margin:0;
+  font-size:29px;
+  letter-spacing:.2px;
 }
 
-/* =========================
-   KOPF
-========================= */
-
-.header {
-  text-align: center;
-  margin-bottom: 20px;
+.header p{
+  margin:5px 0 0;
+  color:#978a84;
+  font-size:14px;
 }
 
-.header h1 {
-  margin: 0;
-  font-size: 32px;
-  color: #393735;
+/* MAIN CARD */
+
+.card{
+  background:rgba(255,255,255,.82);
+  border:1px solid #eaded8;
+  border-radius:25px;
+  padding:18px;
+  margin-bottom:15px;
+  box-shadow:0 7px 25px rgba(100,80,70,.07);
 }
 
-.header p {
-  margin: 6px 0 0;
-  color: #817b77;
-  font-size: 15px;
+/* ROOM */
+
+.room{
+  position:relative;
+  height:310px;
+  overflow:hidden;
+  border-radius:22px;
+  background:#eee4de;
+  border:1px solid #e5d7d0;
 }
 
-/* =========================
-   KARTEN
-========================= */
+/* window */
 
-.card {
-  background: rgba(255,255,255,0.86);
-  border: 1px solid #e5dfdc;
-  border-radius: 24px;
-  padding: 22px;
-  margin-bottom: 18px;
-  box-shadow: 0 8px 25px rgba(70,60,55,0.05);
+.window{
+  position:absolute;
+  top:22px;
+  left:50%;
+  transform:translateX(-50%);
+  width:145px;
+  height:100px;
+  border:8px solid #ded0c9;
+  border-radius:18px;
+  background:#dce8e7;
+  overflow:hidden;
 }
 
-.card h2 {
-  margin: 0 0 7px;
-  font-size: 22px;
-  color: #44413f;
-}
-
-.subtitle {
-  color: #88817d;
-  font-size: 14px;
-  margin-bottom: 18px;
-}
-
-/* =========================
-   MOCHI ZIMMER
-========================= */
-
-.mochi-room {
-  height: 360px;
-  border-radius: 22px;
-  overflow: hidden;
-  position: relative;
+.window:before{
+  content:"";
+  position:absolute;
+  width:100%;
+  height:100%;
   background:
-    linear-gradient(
-      to bottom,
-      #eee7e5 0%,
-      #eee7e5 67%,
-      #cdbbb0 67%,
-      #cdbbb0 100%
-    );
-  border: 1px solid #ded5d0;
-}
-
-/* kleines Fenster */
-.mochi-room::before {
-  content: "☁️";
-  position: absolute;
-  top: 25px;
-  left: 35px;
-  font-size: 24px;
-  opacity: 0.55;
-}
-
-/* Pflanze im Raum */
-.mochi-room::after {
-  content: "🪴";
-  position: absolute;
-  right: 25px;
-  bottom: 18px;
-  font-size: 38px;
-}
-
-/* =========================
-   MOCHI
-========================= */
-
-.mochi-wrap {
-  position: absolute;
-  left: 50%;
-  bottom: 48px;
-  width: 230px;
-  height: 230px;
-  transform: translateX(-50%) scale(0.88);
-  transform-origin: bottom center;
-  transition: transform 0.5s ease;
-  z-index: 5;
-}
-
-/* Wachstum */
-.mochi-wrap.stufe-1,
-.mochi-wrap.stufe-2 {
-  transform: translateX(-50%) scale(0.82);
-}
-
-.mochi-wrap.stufe-3,
-.mochi-wrap.stufe-4,
-.mochi-wrap.stufe-5 {
-  transform: translateX(-50%) scale(0.90);
-}
-
-.mochi-wrap.stufe-6,
-.mochi-wrap.stufe-7,
-.mochi-wrap.stufe-8,
-.mochi-wrap.stufe-9,
-.mochi-wrap.stufe-10 {
-  transform: translateX(-50%) scale(1);
-}
-
-.mochi-wrap.stufe-11,
-.mochi-wrap.stufe-12,
-.mochi-wrap.stufe-13,
-.mochi-wrap.stufe-14,
-.mochi-wrap.stufe-15,
-.mochi-wrap.stufe-16,
-.mochi-wrap.stufe-17,
-.mochi-wrap.stufe-18,
-.mochi-wrap.stufe-19 {
-  transform: translateX(-50%) scale(1.10);
-}
-
-.mochi-wrap.stufe-20 {
-  transform: translateX(-50%) scale(1.20);
-}
-
-/* Körper */
-.mochi {
-  position: absolute;
-  left: 50%;
-  bottom: 8px;
-  transform: translateX(-50%);
-  width: 125px;
-  height: 145px;
-  background: #d7d7d5;
-  border-radius: 55% 55% 48% 48%;
-  border: 2px solid #c4c4c2;
-  box-shadow: 0 5px 0 rgba(120,110,105,0.08);
-}
-
-/* Kopf */
-.mochi-head {
-  position: absolute;
-  left: 50%;
-  top: -35px;
-  transform: translateX(-50%);
-  width: 145px;
-  height: 125px;
-  background: #d7d7d5;
-  border: 2px solid #c4c4c2;
-  border-radius: 52% 52% 47% 47%;
-}
-
-/* Ohren */
-.ear {
-  position: absolute;
-  width: 38px;
-  height: 88px;
-  background: #d7d7d5;
-  border: 2px solid #c4c4c2;
-  border-radius: 55% 55% 45% 45%;
-  top: -73px;
-}
-
-.ear::after {
-  content: "";
-  position: absolute;
-  left: 7px;
-  top: 8px;
-  width: 20px;
-  height: 65px;
-  background: #e9a0aa;
-  border-radius: 50%;
-}
-
-.ear.left {
-  left: 22px;
-  transform: rotate(-7deg);
-}
-
-.ear.right {
-  right: 22px;
-  transform: rotate(7deg);
-}
+    radial-gradient(circle at 25% 35%,#fff 0 9px,transparent 10px),
+    radial-gradient(circle at 65% 25%,#fff 0 11px,transparent 12px),
+    linear-gradient(#dce9ea,#f8e7df);
+  opacity:.8;
+}
+
+.window:after{
+  content:"";
+  position:absolute;
+  left:50%;
+  top:0;
+  width:5px;
+  height:100%;
+  background:#ded0c9;
+  transform:translateX(-50%);
+}
 
-/* Gesicht */
-.eye {
-  position: absolute;
-  top: 48px;
-  width: 8px;
-  height: 12px;
-  background: #4c4a49;
-  border-radius: 50%;
+/* shelf */
+
+.shelf{
+  position:absolute;
+  right:24px;
+  top:52px;
+  width:115px;
+  height:8px;
+  background:#cdbcb3;
+  border-radius:5px;
+}
+
+.plant{
+  position:absolute;
+  right:55px;
+  top:18px;
+  font-size:32px;
+}
+
+/* floor */
+
+.floor{
+  position:absolute;
+  bottom:0;
+  width:100%;
+  height:70px;
+  background:#e3d2c9;
+  border-top:2px solid #d4c1b8;
+}
+
+/* bunny */
+
+.bunny{
+  position:absolute;
+  left:50%;
+  bottom:42px;
+  transform:translateX(-50%);
+  width:145px;
+  height:165px;
+  cursor:pointer;
+  transition:.25s;
+  z-index:5;
+}
+
+.bunny:hover{
+  transform:translateX(-50%) scale(1.04);
+}
+
+.ear{
+  position:absolute;
+  width:47px;
+  height:105px;
+  top:0;
+  background:#c7c7c9;
+  border-radius:50% 50% 45% 45%;
 }
 
-.eye.left {
-  left: 43px;
+.ear.left{
+  left:16px;
+  transform:rotate(-8deg);
 }
 
-.eye.right {
-  right: 43px;
+.ear.right{
+  right:16px;
+  transform:rotate(8deg);
 }
 
-.nose {
-  position: absolute;
-  top: 69px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 13px;
-  height: 9px;
-  background: #e38d99;
-  border-radius: 50%;
+.ear:after{
+  content:"";
+  position:absolute;
+  width:20px;
+  height:73px;
+  top:15px;
+  left:50%;
+  transform:translateX(-50%);
+  background:#e7b9bd;
+  border-radius:50%;
 }
 
-.mouth {
-  position: absolute;
-  top: 78px;
-  left: 50%;
-  transform: translateX(-50%);
-  font-size: 14px;
-  color: #595554;
+.head{
+  position:absolute;
+  left:8px;
+  top:48px;
+  width:129px;
+  height:104px;
+  background:#cfcfd1;
+  border-radius:50% 50% 46% 46%;
+  box-shadow:inset 0 -6px 0 rgba(0,0,0,.03);
 }
 
-/* Schnurrhaare */
-.whisker {
-  position: absolute;
-  width: 35px;
-  height: 1px;
-  background: #aaa7a4;
-  top: 77px;
+.eye{
+  position:absolute;
+  top:38px;
+  width:9px;
+  height:13px;
+  background:#403b3a;
+  border-radius:50%;
 }
 
-.whisker.left.one {
-  left: -28px;
-  transform: rotate(-10deg);
-}
-
-.whisker.left.two {
-  left: -30px;
-  top: 87px;
-  transform: rotate(5deg);
-}
+.eye.left{left:39px}
+.eye.right{right:39px}
 
-.whisker.right.one {
-  right: -28px;
-  transform: rotate(10deg);
+.nose{
+  position:absolute;
+  left:50%;
+  top:54px;
+  transform:translateX(-50%);
+  width:11px;
+  height:8px;
+  background:#d98992;
+  border-radius:50%;
 }
 
-.whisker.right.two {
-  right: -30px;
-  top: 87px;
-  transform: rotate(-5deg);
+.mouth{
+  position:absolute;
+  left:50%;
+  top:61px;
+  transform:translateX(-50%);
+  font-size:18px;
+  color:#514a47;
 }
 
-/* Körperdetails */
-.paw {
-  position: absolute;
-  width: 42px;
-  height: 28px;
-  background: #d7d7d5;
-  border: 2px solid #c4c4c2;
-  border-radius: 50%;
-  bottom: 20px;
+.cheek{
+  position:absolute;
+  top:57px;
+  width:22px;
+  height:10px;
+  background:#e8bfc1;
+  border-radius:50%;
+  opacity:.65;
 }
 
-.paw.left {
-  left: -8px;
-  transform: rotate(15deg);
-}
+.cheek.left{left:17px}
+.cheek.right{right:17px}
 
-.paw.right {
-  right: -8px;
-  transform: rotate(-15deg);
+.body{
+  position:absolute;
+  bottom:0;
+  left:35px;
+  width:75px;
+  height:50px;
+  background:#c7c7c9;
+  border-radius:50% 50% 40% 40%;
 }
 
-.foot {
-  position: absolute;
-  bottom: -7px;
-  width: 45px;
-  height: 25px;
-  background: #d7d7d5;
-  border: 2px solid #c4c4c2;
-  border-radius: 50%;
-}
+/* animations */
 
-.foot.left {
-  left: 12px;
+.bunny.happy{
+  animation:bounce .65s ease;
 }
 
-.foot.right {
-  right: 12px;
+.bunny.eating{
+  animation:eat .7s ease;
 }
-
-/* =========================
-   ACCESSOIRES
-========================= */
 
-.getragenes-item {
-  position: absolute;
-  z-index: 20;
-  line-height: 1;
-  pointer-events: none;
-  filter: drop-shadow(0 2px 1px rgba(0,0,0,0.08));
+.bunny.sleeping{
+  animation:sleep .9s ease-in-out infinite alternate;
 }
 
-/* Schleife – MITTIG auf dem Kopf */
-.item-schleife {
-  top: -52px;
-  left: 50%;
-  transform: translateX(-50%);
-  font-size: 32px;
+@keyframes bounce{
+  0%,100%{bottom:42px}
+  45%{bottom:65px}
 }
 
-/* Krone */
-.item-krone {
-  top: -67px;
-  left: 50%;
-  transform: translateX(-50%);
-  font-size: 34px;
+@keyframes eat{
+  0%,100%{transform:translateX(-50%)}
+  50%{transform:translateX(-50%) scale(.94)}
 }
 
-/* Blume – am Ohr */
-.item-blume {
-  top: -60px;
-  left: 22px;
-  font-size: 28px;
-  transform: rotate(-8deg);
+@keyframes sleep{
+  from{transform:translateX(-50%) translateY(2px)}
+  to{transform:translateX(-50%) translateY(8px)}
 }
 
-/* Karotte – an der Pfote */
-.item-karotte {
-  top: 105px;
-  right: 18px;
-  font-size: 29px;
-  transform: rotate(18deg);
-}
+/* speech */
 
-/* Erdbeere */
-.item-erdbeere {
-  top: 108px;
-  left: 15px;
-  font-size: 26px;
-  transform: rotate(-12deg);
+.speech{
+  position:absolute;
+  left:18px;
+  top:20px;
+  background:white;
+  padding:10px 13px;
+  border-radius:15px;
+  font-size:12px;
+  max-width:180px;
+  box-shadow:0 4px 15px rgba(80,60,50,.08);
+  z-index:10;
 }
 
-/* Teddybär */
-.item-teddy {
-  top: 135px;
-  right: -4px;
-  font-size: 32px;
+.speech:after{
+  content:"";
+  position:absolute;
+  bottom:-7px;
+  left:25px;
+  border-width:7px 7px 0 0;
+  border-style:solid;
+  border-color:white transparent transparent transparent;
 }
 
-/* =========================
-   MOCHI STATUS
-========================= */
+/* stats */
 
-.mochi-info {
-  text-align: center;
-  margin-top: 13px;
+.level{
+  text-align:center;
+  margin-top:15px;
+  font-size:14px;
 }
 
-.nachricht {
-  min-height: 25px;
-  font-weight: bold;
-  color: #75645d;
-  margin-bottom: 7px;
+.xpbar{
+  height:9px;
+  margin:7px auto 0;
+  max-width:420px;
+  background:#e8dfda;
+  border-radius:20px;
+  overflow:hidden;
 }
 
-.status-zeile {
-  font-size: 16px;
-  font-weight: bold;
+.xpfill{
+  height:100%;
+  width:0;
+  background:#d7b6b1;
+  border-radius:20px;
+  transition:.4s;
 }
 
-.xp-leiste {
-  width: 100%;
-  height: 10px;
-  background: #e8e3e0;
-  border-radius: 20px;
-  overflow: hidden;
-  margin: 10px 0 18px;
+.stats{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:9px;
+  margin-top:15px;
 }
 
-.xp-fortschritt {
-  height: 100%;
-  width: 0%;
-  background: #dca8ad;
-  border-radius: 20px;
-  transition: width 0.4s ease;
+.stat{
+  background:#faf6f3;
+  padding:11px 7px;
+  border-radius:15px;
+  text-align:center;
+  font-size:12px;
 }
 
-/* =========================
-   BEDÜRFNISSE
-========================= */
-
-.stats {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 12px;
-  margin-bottom: 15px;
+.stat strong{
+  display:block;
+  font-size:14px;
+  margin-top:3px;
 }
 
-.stat {
-  text-align: center;
-  padding: 10px;
-  border-radius: 15px;
-  background: #faf8f7;
+.mini{
+  height:6px;
+  background:#e9e1dd;
+  border-radius:20px;
+  overflow:hidden;
+  margin-top:6px;
 }
 
-.stat-name {
-  font-size: 14px;
-  color: #77706c;
+.mini div{
+  height:100%;
+  width:50%;
+  background:#cdb9b2;
+  border-radius:20px;
 }
 
-.stat-value {
-  font-size: 20px;
-  font-weight: bold;
-  margin-top: 4px;
-}
+/* actions */
 
-.aktionen {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 10px;
+.actions{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:8px;
+  margin-top:14px;
 }
 
-.aktion {
-  border: none;
-  background: #f1e8e6;
-  color: #554c49;
-  border-radius: 15px;
-  padding: 13px 8px;
-  cursor: pointer;
-  transition: transform 0.15s ease, background 0.15s ease;
-  font-size: 14px;
+button{
+  border:0;
+  border-radius:15px;
+  padding:11px 5px;
+  background:#f1e4df;
+  color:#514a47;
+  font-weight:bold;
+  cursor:pointer;
+  font-family:inherit;
+  transition:.18s;
 }
 
-.aktion:hover {
-  transform: translateY(-2px);
-  background: #eadcda;
+button:hover{
+  transform:translateY(-2px);
+  background:#ead6d1;
 }
 
-/* =========================
-   BELOHNUNGEN
-========================= */
-
-.belohnungen {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 10px;
+button:active{
+  transform:scale(.96);
 }
 
-.belohnung {
-  border: none;
-  border-radius: 16px;
-  background: #f4eeec;
-  padding: 13px 8px;
-  cursor: pointer;
-  color: #514b48;
-  min-height: 82px;
-  transition: 0.15s;
+button .icon{
+  display:block;
+  font-size:21px;
+  margin-bottom:4px;
 }
 
-.belohnung:hover:not(:disabled) {
-  transform: translateY(-2px);
-  background: #eee2df;
-}
+/* reward */
 
-.belohnung:disabled {
-  cursor: default;
-  opacity: 0.65;
+.reward{
+  background:#fff5e7;
+  border-color:#ead8bd;
 }
 
-.belohnung strong {
-  display: block;
-  margin-bottom: 6px;
+.reward-title{
+  font-size:17px;
+  font-weight:bold;
 }
 
-.belohnung small {
-  display: block;
-  margin-top: 7px;
-  color: #817a76;
+.reward p{
+  font-size:13px;
+  color:#81756f;
 }
-
-/* =========================
-   SHOP
-========================= */
 
-.shop {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 12px;
+.reward-buttons{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:8px;
 }
 
-.shop-item {
-  background: #faf8f7;
-  border-radius: 17px;
-  padding: 14px 8px;
-  text-align: center;
+.reward-buttons button{
+  background:#ead8b8;
 }
 
-.shop-emoji {
-  font-size: 31px;
-  margin-bottom: 5px;
+.reward-buttons button:disabled{
+  opacity:.4;
+  cursor:not-allowed;
 }
 
-.shop-name {
-  font-weight: bold;
-  margin-bottom: 3px;
-}
+/* shop */
 
-.shop-preis {
-  color: #817a76;
-  font-size: 13px;
-  margin-bottom: 8px;
+.shop{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:9px;
 }
 
-.shop-item button,
-.inventar-item button {
-  border: none;
-  background: #e9d9d5;
-  color: #554b48;
-  border-radius: 10px;
-  padding: 7px 12px;
-  cursor: pointer;
+.item{
+  background:#faf6f3;
+  border-radius:16px;
+  padding:11px 5px;
+  text-align:center;
+  font-size:12px;
 }
 
-.shop-item button:disabled {
-  opacity: 0.5;
-  cursor: default;
+.item-icon{
+  font-size:29px;
+  margin-bottom:3px;
 }
-
-/* =========================
-   INVENTAR
-========================= */
 
-.inventar {
-  display: grid;
-  gap: 9px;
+.item button{
+  margin-top:7px;
+  width:100%;
+  padding:7px 3px;
+  font-size:11px;
 }
 
-.inventar-item {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background: #faf8f7;
-  padding: 11px 13px;
-  border-radius: 13px;
-}
+/* inventory */
 
-.inventar-name {
-  display: flex;
-  align-items: center;
-  gap: 8px;
+.inventory{
+  display:flex;
+  flex-wrap:wrap;
+  gap:7px;
+  margin-top:10px;
 }
 
-.ausgeruestet {
-  font-size: 12px;
-  color: #9b7e77;
+.badge{
+  background:#f2e5df;
+  border-radius:20px;
+  padding:6px 10px;
+  font-size:12px;
 }
 
-/* =========================
-   WOHNUNG
-========================= */
+/* toast */
 
-.wohnung {
-  min-height: 180px;
-  border-radius: 18px;
-  background:
-    linear-gradient(
-      to bottom,
-      #eee8e6 0%,
-      #eee8e6 68%,
-      #cdbbb0 68%,
-      #cdbbb0 100%
-    );
-  padding: 20px;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: flex-end;
-  gap: 15px;
+.toast{
+  position:fixed;
+  left:50%;
+  bottom:22px;
+  transform:translateX(-50%) translateY(20px);
+  background:#514a47;
+  color:white;
+  padding:10px 16px;
+  border-radius:20px;
+  opacity:0;
+  pointer-events:none;
+  transition:.3s;
+  font-size:13px;
+  z-index:99;
 }
 
-.wohn-item {
-  font-size: 40px;
-  background: rgba(255,255,255,0.35);
-  padding: 10px;
-  border-radius: 15px;
+.toast.show{
+  opacity:1;
+  transform:translateX(-50%) translateY(0);
 }
-
-/* =========================
-   HERZEN
-========================= */
 
-.herz {
-  position: absolute;
-  font-size: 25px;
-  animation: herzFliegen 1s ease forwards;
-  pointer-events: none;
-  z-index: 50;
+.footer{
+  text-align:center;
+  color:#a0948f;
+  font-size:11px;
+  padding:5px;
 }
 
-@keyframes herzFliegen {
-  0% {
-    opacity: 1;
-    transform: translateY(0) scale(1);
+@media(max-width:520px){
+  .actions{
+    grid-template-columns:repeat(2,1fr);
   }
 
-  100% {
-    opacity: 0;
-    transform: translateY(-75px) scale(1.35);
-  }
-}
-
-/* =========================
-   WACHSTUMS-HINWEIS
-========================= */
-
-.wachstum {
-  text-align: center;
-  color: #8b7b75;
-  font-size: 13px;
-  margin-top: 5px;
-}
-
-/* =========================
-   MOBIL
-========================= */
-
-@media (max-width: 700px) {
-  .container {
-    width: 94%;
+  .stats{
+    grid-template-columns:1fr;
   }
 
-  .stats,
-  .aktionen,
-  .belohnungen,
-  .shop {
-    grid-template-columns: repeat(2, 1fr);
+  .shop{
+    grid-template-columns:repeat(2,1fr);
   }
 
-  .mochi-room {
-    height: 330px;
-  }
-}
-
-@media (max-width: 430px) {
-  .aktionen {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .shop {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .mochi-room {
-    height: 310px;
+  .reward-buttons{
+    grid-template-columns:1fr;
   }
 }
 </style>
@@ -700,1131 +522,586 @@ button {
 
 <body>
 
-<div class="container">
+<div class="app">
 
   <div class="header">
-    <h1>🐰 Mochi ♡</h1>
-    <p>Dein kleiner Lernfreund</p>
+    <h1>Meet Mochi ♡</h1>
+    <p>Your little study buddy 🐰</p>
   </div>
 
-  <!-- MOCHI -->
   <div class="card">
 
-    <div class="mochi-room">
+    <div class="room">
 
-      <div class="mochi-wrap" id="mochiWrap">
+      <div class="window"></div>
 
-        <div class="mochi" id="mochi">
+      <div class="shelf"></div>
 
-          <div class="ear left"></div>
-          <div class="ear right"></div>
+      <div class="plant">🌿</div>
 
-          <div class="mochi-head">
-            <div class="eye left"></div>
-            <div class="eye right"></div>
-            <div class="nose"></div>
-            <div class="mouth">⌣</div>
+      <div class="speech" id="speech">
+        Let's have a productive day! ♡
+      </div>
 
-            <div class="whisker left one"></div>
-            <div class="whisker left two"></div>
-            <div class="whisker right one"></div>
-            <div class="whisker right two"></div>
-          </div>
+      <div class="bunny" id="bunny" onclick="petMochi()">
 
-          <div class="paw left"></div>
-          <div class="paw right"></div>
+        <div class="ear left"></div>
+        <div class="ear right"></div>
 
-          <div class="foot left"></div>
-          <div class="foot right"></div>
+        <div class="head">
+
+          <div class="eye left"></div>
+          <div class="eye right"></div>
+
+          <div class="cheek left"></div>
+          <div class="cheek right"></div>
+
+          <div class="nose"></div>
+
+          <div class="mouth">⌣</div>
 
         </div>
 
-        <div id="equippedItems"></div>
+        <div class="body"></div>
 
+      </div>
+
+      <div class="floor"></div>
+
+    </div>
+
+
+    <div class="level">
+      ⭐ Level <strong id="level">1</strong>
+      · <span id="xp">0</span> / <span id="xpNeeded">100</span> XP
+      · 🪙 <strong id="coins">0</strong>
+
+      <div class="xpbar">
+        <div class="xpfill" id="xpfill"></div>
+      </div>
+    </div>
+
+
+    <div class="stats">
+
+      <div class="stat">
+        ❤️ Happiness
+        <strong id="happy">80</strong>
+        <div class="mini">
+          <div id="happyBar"></div>
+        </div>
+      </div>
+
+      <div class="stat">
+        🍓 Hunger
+        <strong id="hunger">60</strong>
+        <div class="mini">
+          <div id="hungerBar"></div>
+        </div>
+      </div>
+
+      <div class="stat">
+        ⚡ Energy
+        <strong id="energy">70</strong>
+        <div class="mini">
+          <div id="energyBar"></div>
+        </div>
       </div>
 
     </div>
 
-    <div class="mochi-info">
 
-      <div class="nachricht" id="nachricht">
-        💕 Mochi wartet auf dich!
-      </div>
+    <div class="actions">
 
-      <div class="status-zeile">
-        ⭐ Stufe <span id="stufe">1</span>
-        · <span id="xp">0</span> / <span id="xpMax">100</span> EP
-        · 🪙 <span id="muenzen">0</span>
-      </div>
+      <button onclick="feed()">
+        <span class="icon">🍎</span>
+        Füttern
+      </button>
 
-      <div class="xp-leiste">
-        <div class="xp-fortschritt" id="xpFortschritt"></div>
-      </div>
+      <button onclick="petMochi()">
+        <span class="icon">💕</span>
+        Streicheln
+      </button>
 
-      <div class="stats">
+      <button onclick="play()">
+        <span class="icon">🎾</span>
+        Spielen
+      </button>
 
-        <div class="stat">
-          <div class="stat-name">💕 Glück</div>
-          <div class="stat-value" id="glueck">100</div>
-        </div>
-
-        <div class="stat">
-          <div class="stat-name">🥕 Hunger</div>
-          <div class="stat-value" id="hunger">80</div>
-        </div>
-
-        <div class="stat">
-          <div class="stat-name">⚡ Energie</div>
-          <div class="stat-value" id="energie">80</div>
-        </div>
-
-      </div>
-
-      <div class="aktionen">
-
-        <button class="aktion" onclick="fuettern()">
-          🥕<br>Füttern
-        </button>
-
-        <button class="aktion" onclick="streicheln()">
-          💕<br>Streicheln
-        </button>
-
-        <button class="aktion" onclick="spielen()">
-          🎾<br>Spielen
-        </button>
-
-        <button class="aktion" onclick="schlafen()">
-          😴<br>Schlafen
-        </button>
-
-      </div>
-
-      <div class="wachstum" id="wachstumText">
-        🌱 Baby-Mochi
-      </div>
+      <button onclick="sleep()">
+        <span class="icon">🌙</span>
+        Schlafen
+      </button>
 
     </div>
 
   </div>
 
 
-  <!-- BELOHNUNGEN -->
-  <div class="card">
+  <!-- STUDY REWARDS -->
 
-    <h2>🎁 Lernbelohnungen</h2>
+  <div class="card reward">
 
-    <div class="subtitle">
-      Erledige deine Aufgaben und verdiene EP und Münzen.
+    <div class="reward-title">
+      🎁 Study Rewards
     </div>
 
-    <div class="belohnungen">
+    <p>
+      Aufgabe in Notion erledigt? Hol dir deine XP! ♡
+    </p>
 
-      <button class="belohnung" id="rewardLernen" onclick="belohnungHolen('lernen')">
-        📚
-        <strong>Lernen</strong>
-        +10 EP · +5 🪙
-        <small>1× täglich</small>
+    <div class="reward-buttons">
+
+      <button id="reward10" onclick="claimReward(10,5)">
+        ✨ +10 XP<br>+5 🪙
       </button>
 
-      <button class="belohnung" id="rewardHausaufgabe" onclick="belohnungHolen('hausaufgabe')">
-        ✏️
-        <strong>Hausaufgabe</strong>
-        +20 EP · +10 🪙
-        <small>1× täglich</small>
+      <button id="reward20" onclick="claimReward(20,10)">
+        📚 +20 XP<br>+10 🪙
       </button>
 
-      <button class="belohnung" id="rewardNote" onclick="belohnungHolen('note')">
-        ⭐
-        <strong>Gute Note</strong>
-        +50 EP · +25 🪙
-        <small>1× täglich</small>
-      </button>
-
-      <button class="belohnung" id="rewardTagesziel" onclick="belohnungHolen('tagesziel')">
-        🎯
-        <strong>Tagesziel</strong>
-        +30 EP · +15 🪙
-        <small>1× täglich</small>
+      <button id="reward50" onclick="claimReward(50,25)">
+        🏆 +50 XP<br>+25 🪙
       </button>
 
     </div>
+
+    <p id="rewardMessage" style="text-align:center;margin-bottom:0;"></p>
 
   </div>
 
 
   <!-- SHOP -->
+
   <div class="card">
 
-    <h2>🛍️ Mochis kleiner Laden</h2>
-
-    <div class="subtitle">
-      Neue Gegenstände werden mit höheren Stufen freigeschaltet.
+    <div class="reward-title">
+      🛍️ Mochi's little shop
     </div>
 
-    <div style="text-align:right; margin-bottom:15px;">
-      🪙 <strong id="shopMuenzen">0</strong>
+    <p style="font-size:12px;color:#8c817c;">
+      Buy cute things with your study coins ♡
+    </p>
+
+    <div class="shop">
+
+      <div class="item">
+        <div class="item-icon">🎀</div>
+        Bow
+        <button onclick="buyItem('bow',20,'🎀')">
+          20 🪙
+        </button>
+      </div>
+
+      <div class="item">
+        <div class="item-icon">🥕</div>
+        Carrot
+        <button onclick="buyItem('carrot',10,'🥕')">
+          10 🪙
+        </button>
+      </div>
+
+      <div class="item">
+        <div class="item-icon">🌸</div>
+        Flower
+        <button onclick="buyItem('flower',30,'🌸')">
+          30 🪙
+        </button>
+      </div>
+
+      <div class="item">
+        <div class="item-icon">🧸</div>
+        Teddy
+        <button onclick="buyItem('teddy',50,'🧸')">
+          50 🪙
+        </button>
+      </div>
+
     </div>
 
-    <div class="shop" id="shop"></div>
+
+    <div style="margin-top:16px;font-weight:bold;font-size:13px;">
+      🎒 Mochi's Inventory
+    </div>
+
+    <div class="inventory" id="inventory">
+      <span class="badge">Nothing yet ♡</span>
+    </div>
 
   </div>
 
 
-  <!-- INVENTAR -->
-  <div class="card">
-
-    <h2>🎒 Inventar</h2>
-
-    <div class="subtitle">
-      Deine gekauften Gegenstände. Du kannst sie ausrüsten oder wieder ablegen.
-    </div>
-
-    <div class="inventar" id="inventar"></div>
-
-  </div>
-
-
-  <!-- WOHNUNG -->
-  <div class="card">
-
-    <h2>🏠 Mochis kleines Zuhause</h2>
-
-    <div class="subtitle">
-      Hier sammeln sich deine Möbel und Deko-Gegenstände.
-    </div>
-
-    <div class="wohnung" id="wohnung"></div>
-
+  <div class="footer">
+    Study ♡ Care ♡ Grow ♡ Together
   </div>
 
 </div>
 
+<div class="toast" id="toast"></div>
+
 
 <script>
 
-/* =========================================================
-   SPIELSTAND
-========================================================= */
+const defaultData = {
 
-const standardZustand = {
-  stufe: 1,
-  xp: 0,
-  muenzen: 0,
+  xp:0,
+  level:1,
+  coins:0,
 
-  glueck: 100,
-  hunger: 80,
-  energie: 80,
+  happiness:80,
+  hunger:60,
+  energy:70,
 
-  inventar: ["schleife"],
-  ausgeruestet: ["schleife"],
-  wohnung: [],
+  inventory:[]
 
-  belohnungen: {}
 };
 
-let spielstand;
 
-try {
-  const gespeichert = localStorage.getItem("mochi_study_pet_2");
-
-  if (gespeichert) {
-    const alt = JSON.parse(gespeichert);
-
-    spielstand = {
-      ...standardZustand,
-      ...alt,
-
-      inventar: Array.isArray(alt.inventar)
-        ? alt.inventar
-        : (Array.isArray(alt.inventory) ? alt.inventory : ["schleife"]),
-
-      ausgeruestet: Array.isArray(alt.ausgeruestet)
-        ? alt.ausgeruestet
-        : (Array.isArray(alt.equipped) ? alt.equipped : ["schleife"]),
-
-      wohnung: Array.isArray(alt.wohnung)
-        ? alt.wohnung
-        : (Array.isArray(alt.room) ? alt.room : []),
-
-      belohnungen: alt.belohnungen || alt.rewards || {}
-    };
-
-    /* Alte englische Werte übernehmen */
-    if (alt.level !== undefined && alt.stufe === undefined) {
-      spielstand.stufe = alt.level;
-    }
-
-    if (alt.coins !== undefined && alt.muenzen === undefined) {
-      spielstand.muenzen = alt.coins;
-    }
-
-    if (alt.happiness !== undefined && alt.glueck === undefined) {
-      spielstand.glueck = alt.happiness;
-    }
-
-    if (alt.hunger !== undefined && alt.hunger === undefined) {
-      spielstand.hunger = alt.hunger;
-    }
-
-    if (alt.energy !== undefined && alt.energie === undefined) {
-      spielstand.energie = alt.energy;
-    }
-
-  } else {
-    spielstand = JSON.parse(JSON.stringify(standardZustand));
-  }
-
-} catch (e) {
-  spielstand = JSON.parse(JSON.stringify(standardZustand));
-}
+let data =
+  JSON.parse(localStorage.getItem("mochi2")) ||
+  defaultData;
 
 
-/* =========================================================
-   SHOP-GEGENSTÄNDE
-========================================================= */
+function save(){
 
-const gegenstaende = [
-
-  {
-    id: "schleife",
-    name: "Schleife",
-    emoji: "🎀",
-    preis: 20,
-    art: "accessoire",
-    stufe: 1
-  },
-
-  {
-    id: "karotte",
-    name: "Karotte",
-    emoji: "🥕",
-    preis: 10,
-    art: "accessoire",
-    stufe: 1
-  },
-
-  {
-    id: "blume",
-    name: "Blume",
-    emoji: "🌷",
-    preis: 30,
-    art: "accessoire",
-    stufe: 1
-  },
-
-  {
-    id: "teddy",
-    name: "Teddybär",
-    emoji: "🧸",
-    preis: 50,
-    art: "accessoire",
-    stufe: 1
-  },
-
-  {
-    id: "erdbeere",
-    name: "Erdbeere",
-    emoji: "🍓",
-    preis: 25,
-    art: "accessoire",
-    stufe: 3
-  },
-
-  {
-    id: "buch",
-    name: "Buch",
-    emoji: "📖",
-    preis: 40,
-    art: "wohnung",
-    stufe: 5
-  },
-
-  {
-    id: "pflanze",
-    name: "Pflanze",
-    emoji: "🪴",
-    preis: 60,
-    art: "wohnung",
-    stufe: 5
-  },
-
-  {
-    id: "lampe",
-    name: "Lampe",
-    emoji: "💡",
-    preis: 80,
-    art: "wohnung",
-    stufe: 8
-  },
-
-  {
-    id: "teppich",
-    name: "Teppich",
-    emoji: "🧶",
-    preis: 100,
-    art: "wohnung",
-    stufe: 10
-  },
-
-  {
-    id: "bett",
-    name: "Bett",
-    emoji: "🛏️",
-    preis: 150,
-    art: "wohnung",
-    stufe: 10
-  },
-
-  {
-    id: "schreibtisch",
-    name: "Schreibtisch",
-    emoji: "🪑",
-    preis: 180,
-    art: "wohnung",
-    stufe: 15
-  },
-
-  {
-    id: "buecherregal",
-    name: "Bücherregal",
-    emoji: "📚",
-    preis: 200,
-    art: "wohnung",
-    stufe: 15
-  },
-
-  {
-    id: "mond",
-    name: "Mondlampe",
-    emoji: "🌙",
-    preis: 250,
-    art: "wohnung",
-    stufe: 20
-  },
-
-  {
-    id: "krone",
-    name: "Krone",
-    emoji: "👑",
-    preis: 300,
-    art: "accessoire",
-    stufe: 20
-  }
-
-];
-
-
-/* =========================================================
-   HILFSFUNKTIONEN
-========================================================= */
-
-function speichern() {
   localStorage.setItem(
-    "mochi_study_pet_2",
-    JSON.stringify(spielstand)
-  );
-}
-
-function heute() {
-  const jetzt = new Date();
-
-  return jetzt.getFullYear() + "-" +
-    String(jetzt.getMonth() + 1).padStart(2, "0") + "-" +
-    String(jetzt.getDate()).padStart(2, "0");
-}
-
-function begrenzen(wert, min = 0, max = 100) {
-  return Math.max(min, Math.min(max, wert));
-}
-
-function xpFuerStufe() {
-  return 100 + (spielstand.stufe - 1) * 25;
-}
-
-function gegenstand(id) {
-  return gegenstaende.find(x => x.id === id);
-}
-
-
-/* =========================================================
-   NACHRICHT
-========================================================= */
-
-function nachricht(text) {
-  document.getElementById("nachricht").textContent = text;
-}
-
-
-/* =========================================================
-   HERZEN
-========================================================= */
-
-function herzen() {
-
-  const raum = document.querySelector(".mochi-room");
-
-  for (let i = 0; i < 3; i++) {
-
-    const herz = document.createElement("div");
-
-    herz.className = "herz";
-    herz.textContent = i % 2 === 0 ? "💕" : "💗";
-
-    herz.style.left = (45 + Math.random() * 15) + "%";
-    herz.style.bottom = (35 + Math.random() * 20) + "%";
-
-    herz.style.animationDelay = (i * 0.15) + "s";
-
-    raum.appendChild(herz);
-
-    setTimeout(() => {
-      herz.remove();
-    }, 1300);
-  }
-}
-
-
-/* =========================================================
-   MOCHI AKTIONEN
-========================================================= */
-
-function fuettern() {
-
-  spielstand.hunger = begrenzen(spielstand.hunger + 15);
-  spielstand.glueck = begrenzen(spielstand.glueck + 3);
-
-  nachricht("🥕 Mochi knabbert glücklich!");
-
-  herzen();
-  speichern();
-  anzeigen();
-}
-
-
-function streicheln() {
-
-  spielstand.glueck = begrenzen(spielstand.glueck + 4);
-
-  nachricht("💕 Mochi schnurrt vor Freude!");
-
-  herzen();
-
-  const mochi = document.getElementById("mochi");
-
-  mochi.animate(
-    [
-      { transform: "translateX(-50%) scale(1)" },
-      { transform: "translateX(-50%) scale(1.05)" },
-      { transform: "translateX(-50%) scale(1)" }
-    ],
-    {
-      duration: 450
-    }
+    "mochi2",
+    JSON.stringify(data)
   );
 
-  speichern();
-  anzeigen();
 }
 
 
-function spielen() {
-
-  if (spielstand.energie < 10) {
-    nachricht("😴 Mochi ist zu müde zum Spielen.");
-    return;
-  }
-
-  spielstand.glueck = begrenzen(spielstand.glueck + 10);
-  spielstand.energie = begrenzen(spielstand.energie - 10);
-
-  nachricht("🎾 Mochi hatte richtig viel Spaß!");
-
-  herzen();
-
-  speichern();
-  anzeigen();
-}
-
-
-function schlafen() {
-
-  spielstand.energie = 100;
-  spielstand.glueck = begrenzen(spielstand.glueck + 5);
-
-  nachricht("😴 Mochi hat wunderbar geschlafen!");
-
-  herzen();
-
-  speichern();
-  anzeigen();
-}
-
-
-/* =========================================================
-   EP
-========================================================= */
-
-function epHinzufuegen(menge) {
-
-  spielstand.xp += menge;
-
-  let aufgestiegen = false;
-
-  while (spielstand.xp >= xpFuerStufe()) {
-
-    spielstand.xp -= xpFuerStufe();
-    spielstand.stufe++;
-    aufgestiegen = true;
-  }
-
-  if (aufgestiegen) {
-
-    nachricht(
-      "🎉 Mochi ist gewachsen! Jetzt Stufe " +
-      spielstand.stufe + "!"
-    );
-
-    herzen();
-  }
-}
-
-
-/* =========================================================
-   LERNBELOHNUNGEN
-========================================================= */
-
-const belohnungsDaten = {
-
-  lernen: {
-    ep: 10,
-    muenzen: 5
-  },
-
-  hausaufgabe: {
-    ep: 20,
-    muenzen: 10
-  },
-
-  note: {
-    ep: 50,
-    muenzen: 25
-  },
-
-  tagesziel: {
-    ep: 30,
-    muenzen: 15
-  }
-
-};
-
-
-function belohnungHolen(art) {
-
-  const daten = belohnungsDaten[art];
-
-  if (!daten) return;
-
-  if (spielstand.belohnungen[art] === heute()) {
-
-    nachricht("✨ Diese Belohnung hast du heute schon geholt.");
-
-    return;
-  }
-
-  spielstand.belohnungen[art] = heute();
-
-  spielstand.muenzen += daten.muenzen;
-
-  epHinzufuegen(daten.ep);
-
-  spielstand.glueck = begrenzen(spielstand.glueck + 2);
-
-  if (art === "lernen") {
-    nachricht("📚 Super gelernt! Mochi ist stolz auf dich!");
-  }
-
-  if (art === "hausaufgabe") {
-    nachricht("✏️ Hausaufgabe geschafft! Sehr fleißig!");
-  }
-
-  if (art === "note") {
-    nachricht("⭐ Eine gute Note! Mochi freut sich mit dir!");
-  }
-
-  if (art === "tagesziel") {
-    nachricht("🎯 Tagesziel geschafft! Yay!");
-  }
-
-  herzen();
-
-  speichern();
-  anzeigen();
-}
-
-
-/* =========================================================
-   SHOP
-========================================================= */
-
-function shopAnzeigen() {
-
-  const shop = document.getElementById("shop");
-
-  shop.innerHTML = "";
-
-  gegenstaende.forEach(item => {
-
-    const besitzt = spielstand.inventar.includes(item.id);
-    const freigeschaltet = spielstand.stufe >= item.stufe;
-
-    const div = document.createElement("div");
-
-    div.className = "shop-item";
-
-    let buttonText = "Kaufen";
-    let disabled = false;
-
-    if (besitzt) {
-      buttonText = "Besitzt du";
-      disabled = true;
-    }
-
-    if (!freigeschaltet) {
-      buttonText = "🔒 Stufe " + item.stufe;
-      disabled = true;
-    }
-
-    div.innerHTML = `
-      <div class="shop-emoji">${item.emoji}</div>
-      <div class="shop-name">${item.name}</div>
-      <div class="shop-preis">🪙 ${item.preis}</div>
-      <button ${disabled ? "disabled" : ""}>
-        ${buttonText}
-      </button>
-    `;
-
-    const button = div.querySelector("button");
-
-    if (!disabled) {
-      button.addEventListener("click", () => kaufen(item.id));
-    }
-
-    shop.appendChild(div);
-
-  });
-
-  document.getElementById("shopMuenzen").textContent =
-    spielstand.muenzen;
-}
-
-
-function kaufen(id) {
-
-  const item = gegenstand(id);
-
-  if (!item) return;
-
-  if (spielstand.inventar.includes(id)) {
-    nachricht("🎒 Diesen Gegenstand besitzt du bereits.");
-    return;
-  }
-
-  if (spielstand.stufe < item.stufe) {
-    nachricht("🔒 Dafür brauchst du eine höhere Stufe.");
-    return;
-  }
-
-  if (spielstand.muenzen < item.preis) {
-    nachricht("🪙 Dafür hast du noch nicht genug Münzen.");
-    return;
-  }
-
-  spielstand.muenzen -= item.preis;
-
-  spielstand.inventar.push(id);
-
-  nachricht(
-    item.emoji + " " +
-    item.name +
-    " gehört jetzt dir!"
+function clamp(number){
+
+  return Math.max(
+    0,
+    Math.min(100,number)
   );
 
-  speichern();
-  anzeigen();
 }
 
 
-/* =========================================================
-   AUSRÜSTEN / ABLEGEN
-========================================================= */
+function showMessage(text){
 
-function ausruesten(id) {
+  document.getElementById("speech").textContent =
+    text;
 
-  const item = gegenstand(id);
-
-  if (!item) return;
-
-  if (!spielstand.inventar.includes(id)) {
-    return;
-  }
-
-  if (item.art === "wohnung") {
-
-    if (!spielstand.wohnung.includes(id)) {
-      spielstand.wohnung.push(id);
-    }
-
-    nachricht(
-      item.emoji + " " +
-      item.name +
-      " wurde aufgestellt! 🏠"
-    );
-
-  } else {
-
-    if (!spielstand.ausgeruestet.includes(id)) {
-      spielstand.ausgeruestet.push(id);
-    }
-
-    nachricht(
-      item.emoji + " " +
-      item.name +
-      " wurde ausgerüstet! ✨"
-    );
-  }
-
-  speichern();
-  anzeigen();
 }
 
 
-function ablegen(id) {
+function toast(text){
 
-  const item = gegenstand(id);
+  const t =
+    document.getElementById("toast");
 
-  if (!item) return;
+  t.textContent = text;
 
-  spielstand.ausgeruestet =
-    spielstand.ausgeruestet.filter(x => x !== id);
+  t.classList.add("show");
 
-  spielstand.wohnung =
-    spielstand.wohnung.filter(x => x !== id);
+  setTimeout(()=>{
+    t.classList.remove("show");
+  },1800);
 
-  nachricht(
-    item.emoji + " " +
-    item.name +
-    " wurde abgelegt."
+}
+
+
+function animate(type="happy"){
+
+  const bunny =
+    document.getElementById("bunny");
+
+  bunny.classList.remove(
+    "happy",
+    "eating",
+    "sleeping"
   );
 
-  speichern();
-  anzeigen();
+  void bunny.offsetWidth;
+
+  bunny.classList.add(type);
+
 }
 
 
-/* =========================================================
-   INVENTAR
-========================================================= */
+function update(){
 
-function inventarAnzeigen() {
-
-  const inventar = document.getElementById("inventar");
-
-  inventar.innerHTML = "";
-
-  if (spielstand.inventar.length === 0) {
-
-    inventar.innerHTML =
-      "<div style='color:#888'>Noch keine Gegenstände vorhanden.</div>";
-
-    return;
-  }
-
-  spielstand.inventar.forEach(id => {
-
-    const item = gegenstand(id);
-
-    if (!item) return;
-
-    const ausgeruestet =
-      spielstand.ausgeruestet.includes(id);
-
-    const aufgestellt =
-      spielstand.wohnung.includes(id);
-
-    let status = "";
-
-    if (ausgeruestet) {
-      status = "✨ Ausgerüstet";
-    } else if (aufgestellt) {
-      status = "🏠 Aufgestellt";
-    }
-
-    const div = document.createElement("div");
-
-    div.className = "inventar-item";
-
-    div.innerHTML = `
-      <div class="inventar-name">
-        <span style="font-size:24px">${item.emoji}</span>
-        <span>
-          <strong>${item.name}</strong><br>
-          <span class="ausgeruestet">${status}</span>
-        </span>
-      </div>
-
-      <button>
-        ${
-          ausgeruestet || aufgestellt
-          ? "Ablegen"
-          : item.art === "wohnung"
-          ? "Aufstellen"
-          : "Ausrüsten"
-        }
-      </button>
-    `;
-
-    const button = div.querySelector("button");
-
-    if (ausgeruestet || aufgestellt) {
-
-      button.addEventListener(
-        "click",
-        () => ablegen(item.id)
-      );
-
-    } else {
-
-      button.addEventListener(
-        "click",
-        () => ausruesten(item.id)
-      );
-
-    }
-
-    inventar.appendChild(div);
-
-  });
-}
-
-
-/* =========================================================
-   ACCESSOIRES ANZEIGEN
-========================================================= */
-
-function accessoiresAnzeigen() {
-
-  const container =
-    document.getElementById("equippedItems");
-
-  container.innerHTML = "";
-
-  spielstand.ausgeruestet.forEach(id => {
-
-    const item = gegenstand(id);
-
-    if (!item || item.art !== "accessoire") {
-      return;
-    }
-
-    const div =
-      document.createElement("div");
-
-    div.className =
-      "getragenes-item item-" + item.id;
-
-    div.textContent = item.emoji;
-
-    container.appendChild(div);
-
-  });
-}
-
-
-/* =========================================================
-   WOHNUNG
-========================================================= */
-
-function wohnungAnzeigen() {
-
-  const wohnung =
-    document.getElementById("wohnung");
-
-  wohnung.innerHTML = "";
-
-  if (spielstand.wohnung.length === 0) {
-
-    wohnung.innerHTML =
-      "<div style='color:#888'>Deine Wohnung ist noch ganz leer. 🏠</div>";
-
-    return;
-  }
-
-  spielstand.wohnung.forEach(id => {
-
-    const item = gegenstand(id);
-
-    if (!item) return;
-
-    const div =
-      document.createElement("div");
-
-    div.className = "wohn-item";
-
-    div.textContent = item.emoji;
-
-    div.title = item.name;
-
-    wohnung.appendChild(div);
-
-  });
-}
-
-
-/* =========================================================
-   WACHSTUM
-========================================================= */
-
-function wachstumAnzeigen() {
-
-  const wrap =
-    document.getElementById("mochiWrap");
-
-  wrap.className =
-    "mochi-wrap stufe-" +
-    Math.min(spielstand.stufe, 20);
-
-  const text =
-    document.getElementById("wachstumText");
-
-  if (spielstand.stufe <= 2) {
-    text.textContent = "🌱 Baby-Mochi";
-  }
-
-  else if (spielstand.stufe <= 5) {
-    text.textContent = "🐰 Kleiner Mochi";
-  }
-
-  else if (spielstand.stufe <= 10) {
-    text.textContent = "🐇 Junger Mochi";
-  }
-
-  else if (spielstand.stufe <= 19) {
-    text.textContent = "💕 Großer Mochi";
-  }
-
-  else {
-    text.textContent = "🎓 Abschluss-Mochi";
-  }
-}
-
-
-/* =========================================================
-   BELOHNUNGS-BUTTONS AKTUALISIEREN
-========================================================= */
-
-function belohnungenAnzeigen() {
-
-  const arten = [
-    "lernen",
-    "hausaufgabe",
-    "note",
-    "tagesziel"
-  ];
-
-  arten.forEach(art => {
-
-    const button =
-      document.getElementById(
-        art === "lernen"
-          ? "rewardLernen"
-          : art === "hausaufgabe"
-          ? "rewardHausaufgabe"
-          : art === "note"
-          ? "rewardNote"
-          : "rewardTagesziel"
-      );
-
-    if (!button) return;
-
-    if (spielstand.belohnungen[art] === heute()) {
-
-      button.disabled = true;
-
-      const small = button.querySelector("small");
-
-      if (small) {
-        small.textContent = "✓ Heute abgeholt";
-      }
-
-    } else {
-
-      button.disabled = false;
-
-      const small = button.querySelector("small");
-
-      if (small) {
-        small.textContent = "1× täglich";
-      }
-
-    }
-
-  });
-}
-
-
-/* =========================================================
-   GESAMT ANZEIGEN
-========================================================= */
-
-function anzeigen() {
-
-  document.getElementById("stufe").textContent =
-    spielstand.stufe;
+  document.getElementById("level").textContent =
+    data.level;
 
   document.getElementById("xp").textContent =
-    spielstand.xp;
+    data.xp;
 
-  document.getElementById("xpMax").textContent =
-    xpFuerStufe();
+  document.getElementById("coins").textContent =
+    data.coins;
 
-  document.getElementById("muenzen").textContent =
-    spielstand.muenzen;
 
-  document.getElementById("shopMuenzen").textContent =
-    spielstand.muenzen;
+  const needed = 100;
 
-  document.getElementById("glueck").textContent =
-    spielstand.glueck;
+  document.getElementById("xpNeeded").textContent =
+    needed;
+
+  document.getElementById("xpfill").style.width =
+    (data.xp / needed * 100) + "%";
+
+
+  document.getElementById("happy").textContent =
+    data.happiness;
 
   document.getElementById("hunger").textContent =
-    spielstand.hunger;
+    data.hunger;
 
-  document.getElementById("energie").textContent =
-    spielstand.energie;
+  document.getElementById("energy").textContent =
+    data.energy;
 
-  const prozent =
-    (spielstand.xp / xpFuerStufe()) * 100;
 
-  document.getElementById("xpFortschritt").style.width =
-    Math.max(0, Math.min(100, prozent)) + "%";
+  document.getElementById("happyBar").style.width =
+    data.happiness + "%";
 
-  shopAnzeigen();
-  inventarAnzeigen();
-  wohnungAnzeigen();
-  accessoiresAnzeigen();
-  wachstumAnzeigen();
-  belohnungenAnzeigen();
+  document.getElementById("hungerBar").style.width =
+    data.hunger + "%";
 
-  speichern();
+  document.getElementById("energyBar").style.width =
+    data.energy + "%";
+
+
+  updateInventory();
+
+  save();
+
 }
 
 
-/* =========================================================
-   START
-========================================================= */
+function addXP(amount){
 
-anzeigen();
+  data.xp += amount;
+
+  let leveledUp = false;
+
+  while(data.xp >= 100){
+
+    data.xp -= 100;
+
+    data.level++;
+
+    data.coins += 20;
+
+    leveledUp = true;
+
+  }
+
+
+  if(leveledUp){
+
+    showMessage(
+      "🎉 LEVEL UP! Mochi ist jetzt Level " +
+      data.level + "! ♡"
+    );
+
+    toast(
+      "🎉 Level " + data.level + "! +20 🪙"
+    );
+
+  }
+
+  update();
+
+}
+
+
+function claimReward(xp,coins){
+
+  addXP(xp);
+
+  data.coins += coins;
+
+  showMessage(
+    "Yay! Du hast gelernt! Mochi ist stolz! 🐰💗"
+  );
+
+  toast(
+    "+" + xp + " XP  +" + coins + " 🪙"
+  );
+
+  animate("happy");
+
+  update();
+
+}
+
+
+function feed(){
+
+  data.hunger =
+    clamp(data.hunger + 20);
+
+  data.energy =
+    clamp(data.energy - 2);
+
+  showMessage(
+    "Nom nom nom! Das war lecker! 🍎"
+  );
+
+  animate("eating");
+
+  update();
+
+}
+
+
+function petMochi(){
+
+  data.happiness =
+    clamp(data.happiness + 10);
+
+  showMessage(
+    "Mochi liebt die Kuscheleinheiten! 💕"
+  );
+
+  animate("happy");
+
+  update();
+
+}
+
+
+function play(){
+
+  if(data.energy < 15){
+
+    showMessage(
+      "Mochi ist zu müde zum Spielen... 😴"
+    );
+
+    animate("sleeping");
+
+    return;
+
+  }
+
+  data.happiness =
+    clamp(data.happiness + 15);
+
+  data.energy =
+    clamp(data.energy - 15);
+
+  showMessage(
+    "YAAAY! Spielen wir! 🎾"
+  );
+
+  animate("happy");
+
+  update();
+
+}
+
+
+function sleep(){
+
+  data.energy =
+    clamp(data.energy + 30);
+
+  data.happiness =
+    clamp(data.happiness + 3);
+
+  showMessage(
+    "Zzz... Mochi macht ein Nickerchen 🌙"
+  );
+
+  animate("sleeping");
+
+  update();
+
+}
+
+
+function buyItem(id,price,emoji){
+
+  if(data.inventory.includes(id)){
+
+    showMessage(
+      "Das hast du schon! ♡"
+    );
+
+    return;
+
+  }
+
+
+  if(data.coins < price){
+
+    showMessage(
+      "Mochi braucht noch mehr 🪙!"
+    );
+
+    toast("Noch nicht genug Coins!");
+
+    return;
+
+  }
+
+
+  data.coins -= price;
+
+  data.inventory.push(id);
+
+  data.happiness =
+    clamp(data.happiness + 5);
+
+
+  showMessage(
+    emoji +
+    " gekauft! Mochi liebt es! ♡"
+  );
+
+  toast(
+    emoji + " gekauft!"
+  );
+
+  update();
+
+}
+
+
+function updateInventory(){
+
+  const container =
+    document.getElementById("inventory");
+
+
+  if(data.inventory.length === 0){
+
+    container.innerHTML =
+      '<span class="badge">Nothing yet ♡</span>';
+
+    return;
+
+  }
+
+
+  const names = {
+
+    bow:"🎀 Bow",
+    carrot:"🥕 Carrot",
+    flower:"🌸 Flower",
+    teddy:"🧸 Teddy"
+
+  };
+
+
+  container.innerHTML =
+    data.inventory
+      .map(item =>
+        '<span class="badge">' +
+        names[item] +
+        '</span>'
+      )
+      .join("");
+
+}
+
+
+update();
 
 </script>
 
